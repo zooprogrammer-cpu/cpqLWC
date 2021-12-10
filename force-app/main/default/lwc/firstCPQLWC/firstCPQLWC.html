@@ -1,0 +1,25 @@
+<template>
+    <!-- <template if:true={loading}>
+        <lightning-spinner variant="brand" size="medium"></lightning-spinner>
+    </template> -->
+    <lightning-card title ="Account List">
+        <template if:true={accounts.data}>
+            <lightning-datatable
+                key-field="Id"
+                data={accounts.data}
+                columns={columns}
+            >
+            </lightning-datatable>
+        </template>
+    </lightning-card>    
+        <lightning-card title ="Quote Lines List">
+            <template if:true={quoteLines.data}>
+                <lightning-datatable
+                    key-field="Id"
+                    data={quoteLines}
+                    columns2={columns2}
+                >
+                </lightning-datatable>
+            </template>
+        </lightning-card>  
+</template>
