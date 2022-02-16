@@ -1,7 +1,9 @@
 <aura:component implements = "flexipage:availableForAllPageTypes,force:lightningQuickActionWithoutHeader,force:hasRecordId">
-    <div>
-        AURAAAAA
-        <c:printRecordIdLWC title="This is Aura" recId="{!v.recordId}"/>  
-
-    </div>  
+    
+    <lightning:card title="Aura Parent Component for recordId">
+        <div>
+            <c:printRecordIdLWC title="This is Aura" recId="{!v.recordId}"/>  
+        </div> 
+    </lightning:card>
+ 
 </aura:component>  
