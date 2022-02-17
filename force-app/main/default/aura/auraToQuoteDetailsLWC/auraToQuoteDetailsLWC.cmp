@@ -1,0 +1,9 @@
+<aura:component implements = "flexipage:availableForAllPageTypes,force:lightningQuickActionWithoutHeader,force:hasRecordId">
+    
+    <lightning:card title="Aura Parent Component for Quote Lines">
+        <div>
+            <c:lwcQuoteLinesChild title="This is Aura" recId="{!v.recordId}"/>  
+        </div> 
+    </lightning:card>
+ 
+</aura:component>

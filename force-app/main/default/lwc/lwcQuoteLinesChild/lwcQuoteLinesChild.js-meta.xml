@@ -10,5 +10,4 @@
             <property name="recId" type="String" label="Record Id" description="Record Id"/>    
         </targetConfig>  
     </targetConfigs>
-
 </LightningComponentBundle>

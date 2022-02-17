@@ -21,5 +21,4 @@ export default class LwcQuoteLinesChild extends LightningElement {
             console.error(error)
         }
     }
-
 }
