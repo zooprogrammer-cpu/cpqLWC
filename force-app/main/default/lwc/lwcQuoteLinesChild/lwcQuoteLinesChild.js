@@ -1,4 +1,6 @@
 import { LightningElement,api,wire,track } from 'lwc';
+import {CurrentPageReference} from 'lightning/navigation'
+
 import getQuoteLines from '@salesforce/apex/QuoteLinesController.getQuoteLines';
 export default class LwcQuoteLinesChild extends LightningElement {
     @api recId;
@@ -21,4 +23,20 @@ export default class LwcQuoteLinesChild extends LightningElement {
             console.error(error)
         }
     }
+
+    @wire(CurrentPageReference)
+    pageRef
+
+    get PageReference(){
+        return this.pageRef ? JSON.stringify(this.pageRef,null,2):''
+    }
+
+    get quoteIden(){
+        return (this.pageRef.state.c__quoteId)
+    }
+
+    
+   
+
 }
+
