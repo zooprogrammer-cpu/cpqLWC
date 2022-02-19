@@ -1,14 +1,18 @@
 <template>
     <lightning-card title="Quote Summary Page child component">
         <div class="slds-m-around_medium">
-            recId- {recId}
+            <button class="slds-button slds-button_neutral" onclick={handleReturntoQuoteDetail}>Return to Quote Detail</button>
+            <button class="slds-button slds-button_neutral">Modify Quote</button>
+            <button class="slds-button slds-button_neutral">Make Payment</button>
+
+        </div>
+        <div class="slds-m-around_medium">
             <lightning-datatable data={quoteLines} columns={columns} key-field="Id"></lightning-datatable>
         </div>
         <div>
             <lightning-card title="Current Page Reference">
                 <p>{PageReference}</p>
-                <!-- <p>New Data - {newData.type}</p> -->
-                <!-- <p>{newData.state.c__quoteId}</p> -->
+             
                 <p>Quote ID is: </p>{quoteIden}
             </lightning-card>
         </div>
