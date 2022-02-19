@@ -1,5 +1,16 @@
 <template>
-    
-    <p>This is the title coming from quoteSummaryPage HTML {title}</p>
-    <p>This is the recordId coming from quoteSUmmaryPage HTML {recordId}</p>
+    <lightning-card title="Quote Summary Page child component">
+        <div class="slds-m-around_medium">
+            recId- {recId}
+            <lightning-datatable data={quoteLines} columns={columns} key-field="Id"></lightning-datatable>
+        </div>
+        <div>
+            <lightning-card title="Current Page Reference">
+                <p>{PageReference}</p>
+                <!-- <p>New Data - {newData.type}</p> -->
+                <!-- <p>{newData.state.c__quoteId}</p> -->
+                <p>Quote ID is: </p>{quoteIden}
+            </lightning-card>
+        </div>
+    </lightning-card>
 </template>
