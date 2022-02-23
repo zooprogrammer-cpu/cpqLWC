@@ -4,7 +4,6 @@ import { NavigationMixin } from 'lightning/navigation';
 import getQuoteLines from '@salesforce/apex/QuoteSummaryController.getQuoteLines';
 import getQuote from '@salesforce/apex/QuoteSummaryController.getQuote';
 export default class QuoteSummaryPage extends NavigationMixin(LightningElement) {
-    @track quoteData; 
     @track quoteLines;
     @track columns =[
         {label:'Id', fieldName: 'Id', type: 'text'}, 
