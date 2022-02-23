@@ -1,9 +1,10 @@
 import { LightningElement,api,wire,track } from 'lwc';
 import {CurrentPageReference} from 'lightning/navigation';
 import { NavigationMixin } from 'lightning/navigation';
-import getQuoteLines from '@salesforce/apex/QuoteLinesController.getQuoteLines';
-
+import getQuoteLines from '@salesforce/apex/QuoteSummaryController.getQuoteLines';
+import getQuote from '@salesforce/apex/QuoteSummaryController.getQuote';
 export default class QuoteSummaryPage extends NavigationMixin(LightningElement) {
+    quoteNumber;
     @track quoteLines;
     @track columns =[
         {label:'Id', fieldName: 'Id', type: 'text'}, 
@@ -24,6 +25,18 @@ export default class QuoteSummaryPage extends NavigationMixin(LightningElement) 
         }
     }
 
+    @wire (getQuote,{quoteId:'$quoteIden'})
+    quoteHandler({data,error}){
+        if(data){
+            console.log(data)
+            
+        }
+        if(error){
+            console.error(error)
+        }
+    }
+
+
     @wire(CurrentPageReference)
     pageRef
 
@@ -34,6 +47,10 @@ export default class QuoteSummaryPage extends NavigationMixin(LightningElement) 
     get quoteIden(){
         return (this.pageRef.state.c__quoteId)
     }
+
+  
+
+
 /* Button to Quote Detail Page */
     handleReturntoQuoteDetail(){
         this[NavigationMixin.Navigate]({ 
