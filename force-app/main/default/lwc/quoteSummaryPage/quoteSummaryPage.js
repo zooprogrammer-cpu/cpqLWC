@@ -4,15 +4,14 @@ import { NavigationMixin } from 'lightning/navigation';
 import getQuoteLines from '@salesforce/apex/QuoteSummaryController.getQuoteLines';
 import getQuote from '@salesforce/apex/QuoteSummaryController.getQuote';
 export default class QuoteSummaryPage extends NavigationMixin(LightningElement) {
-    quoteNumber;
+    @track quoteData; 
     @track quoteLines;
     @track columns =[
         {label:'Id', fieldName: 'Id', type: 'text'}, 
         {label:'Product Name', fieldName:'SBQQ__ProductName__c',type: 'text' },
-        {label:'Description', fieldName: 'SBQQ__Description__c',type: 'text'},
         {label:'Qty', fieldName: 'SBQQ__Quantity__c',type: 'text'}
     ];
-
+    //Capture Quote Lines 
     @wire(getQuoteLines,{quoteId:'$quoteIden'})
     quoteLinesHandler({data,error}){
         if(data){
@@ -24,18 +23,18 @@ export default class QuoteSummaryPage extends NavigationMixin(LightningElement) 
             console.error(error)
         }
     }
-
+    //Capture Quote Name
     @wire (getQuote,{quoteId:'$quoteIden'})
     quoteHandler({data,error}){
         if(data){
             console.log(data)
-            
+            console.log(data.Name)
+            this.quoteNames = data;
         }
         if(error){
             console.error(error)
         }
     }
-
 
     @wire(CurrentPageReference)
     pageRef
@@ -47,9 +46,6 @@ export default class QuoteSummaryPage extends NavigationMixin(LightningElement) 
     get quoteIden(){
         return (this.pageRef.state.c__quoteId)
     }
-
-  
-
 
 /* Button to Quote Detail Page */
     handleReturntoQuoteDetail(){
