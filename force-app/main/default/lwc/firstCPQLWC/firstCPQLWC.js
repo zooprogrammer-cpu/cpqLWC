@@ -1,8 +1,8 @@
 import { LightningElement, wire } from 'lwc';
 //import { getRecord, createRecord, getRecordCreateDefaults, updateRecord } from 'lightning/uiRecordApi';
 //import { refreshApex } from '@salesforce/apex';
-import getQuoteLines from '@salesforce/apex/firstCPQController.getQuoteLines';
-import getQuote from '@salesforce/apex/firstCPQController.getQuote';
+import getQuoteLines from '@salesforce/apex/FirstCPQController.getQuoteLines';
+import getQuote from '@salesforce/apex/FirstCPQController.getQuote';
 import NAME_FIELD from '@salesforce/schema/Account.Name';
 import REVENUE_FIELD from '@salesforce/schema/Account.AnnualRevenue';
 import INDUSTRY_FIELD from '@salesforce/schema/Account.Industry';
@@ -11,7 +11,7 @@ import DESCRIPTION_FIELD from '@salesforce/schema/SBQQ__QuoteLine__c.SBQQ__Descr
 import QUANTITY_FIELD from '@salesforce/schema/SBQQ__QuoteLine__c.SBQQ__Quantity__c';
 
 
-import getAccounts from '@salesforce/apex/firstCPQController.getAccounts';
+import getAccounts from '@salesforce/apex/FirstCPQController.getAccounts';
 const COLUMNS =[
     {label: 'Account Name', fieldName: NAME_FIELD.fieldApiName,type:'text'},
     {label: 'Annual Revenue', fieldName: REVENUE_FIELD.fieldApiName,type:'currency'},
@@ -38,5 +38,3 @@ export default class FirstCPQLWC extends LightningElement {
     @wire(getQuote)
     quote;
 }
-
-

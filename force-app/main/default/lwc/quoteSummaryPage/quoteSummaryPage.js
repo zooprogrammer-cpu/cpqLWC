@@ -10,6 +10,18 @@ export default class QuoteSummaryPage extends NavigationMixin(LightningElement) 
         {label:'Product Name', fieldName:'SBQQ__ProductName__c',type: 'text' },
         {label:'Qty', fieldName: 'SBQQ__Quantity__c',type: 'text'}
     ];
+      //Capture quoteId
+      @wire(CurrentPageReference)
+      pageRef
+  
+      get PageReference(){
+          return this.pageRef ? JSON.stringify(this.pageRef,null,2):''
+      }
+  
+      get quoteIden(){
+          return (this.pageRef.state.c__quoteId)
+      }
+
     //Capture Quote Lines 
     @wire(getQuoteLines,{quoteId:'$quoteIden'})
     quoteLinesHandler({data,error}){
@@ -34,18 +46,7 @@ export default class QuoteSummaryPage extends NavigationMixin(LightningElement) 
             console.error(error)
         }
     }
-
-    @wire(CurrentPageReference)
-    pageRef
-
-    get PageReference(){
-        return this.pageRef ? JSON.stringify(this.pageRef,null,2):''
-    }
-
-    get quoteIden(){
-        return (this.pageRef.state.c__quoteId)
-    }
-
+  
 /* Button to Quote Detail Page */
     handleReturntoQuoteDetail(){
         this[NavigationMixin.Navigate]({ 
@@ -57,4 +58,21 @@ export default class QuoteSummaryPage extends NavigationMixin(LightningElement) 
             }
         })
     }
+/* Button to Make Payment */
+
+    handleMakePayment(){
+
+    }
+
+// Button to Edit Lines Page
+    // handleGotoQle(){
+    //     this[NavigationMixin.Navigate]({ 
+    //         type:'standard__recordPage',
+    //         attributes:{ 
+    //             recordId:this.pageRef.state.c__quoteId,
+    //             objectApiName:'SBQQ__Quote__c',
+    //             actionName:'view'
+    //         }
+    //     })
+    // }
 }
