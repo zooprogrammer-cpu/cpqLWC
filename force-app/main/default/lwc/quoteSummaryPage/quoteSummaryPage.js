@@ -47,7 +47,7 @@ export default class QuoteSummaryPage extends NavigationMixin(LightningElement) 
         }
     }
   
-/* Button to Quote Detail Page */
+    /* Button to Quote Detail Page */
     handleReturntoQuoteDetail(){
         this[NavigationMixin.Navigate]({ 
             type:'standard__recordPage',
@@ -58,15 +58,15 @@ export default class QuoteSummaryPage extends NavigationMixin(LightningElement) 
             }
         })
     }
-/* Button to Make Payment Modal */
+    /* Button to Make Payment Modal */
 
-   showModal= false
-   handleShowMakePayment(event){
+    showModal= false
+    clickHandler(event){
        this.showModal = true;
-   }
-   handleCloseMakePayment(event){
+    }
+    closeHandler(event){
        this.showModal =false;
-   }
+    }
 
 
 // Button to Edit Lines Page

@@ -3,20 +3,25 @@
         <div class="slds-m-around_medium">
             <button class="slds-button slds-button_neutral" onclick={handleReturntoQuoteDetail}>Return to Quote Detail</button>
             <button class="slds-button slds-button_neutral" onclick={handleGotoQle}>Modify Quote</button>
-            <button class="slds-button slds-button_neutral" onclick={handleMakePayment}>Make Payment</button>
+            <button class="slds-button slds-button_neutral" onclick={clickHandler}>Make Payment</button>
 
         </div>
+        <!-- Print Quote Name in Quote Summary Page Start -->
         <div class="slds-text-heading_medium slds-align_absolute-center">
             <template if:true={quoteNames}>
                 Quote Name:{quoteNames.Name}
         </template>
         </div>
+        <!-- Print Quote Name in Quote Summary Page End -->
+        <!-- Display Quote Lines Start -->
         <div class="slds-m-around_medium slds-align_absolute-center">
             <template if:true={quoteLines}>
                 <lightning-datatable data={quoteLines} columns={columns} key-field="Id"></lightning-datatable>
 
             </template>
         </div>
+        <!-- Display Quote Lines End -->
+
         <div>
             <lightning-card title="Current Page Reference">
                 <p>{PageReference}</p>
@@ -24,10 +29,13 @@
               
             </lightning-card>
         </div>
+        <!-- Make Payment Modal Start -->
         <div>
             <template if:true={showModal}>
-                <c-review-quote-payment-l-w-c onclose={handleCloseMakePayment}></c-review-quote-payment-l-w-c>
+                <c-review-quote-payment-l-w-c record-id={quoteIden} onclose={closeHandler}></c-review-quote-payment-l-w-c>
             </template>
         </div>
+        <!-- Make Payment Modal End -->
+
     </lightning-card>
 </template>
