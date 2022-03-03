@@ -8,7 +8,7 @@
               </svg>
               <span class="slds-assistive-text">Close</span>
             </button>
-            <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Make Payment</h2>
+            <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Make Payment {name}</h2>
           </header>
           <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
             <!-- Grid Starts here -->
@@ -17,6 +17,15 @@
               <div class="slds-col">
                 <div class="slds-box">
                   <p>This is a regular-sized box.</p>
+                  <fieldset class="slds-form-element slds-form-element_compound">
+                    <legend class="slds-form-element__legend slds-form-element__label">List Amount</legend>
+                    <div class="slds-form-element__control"></div>
+                    </fieldset>
+                  <div class="nowrap">
+                    <div class="slds-form-element-row">
+                      <lightning-input name="listAmount" type="currency" value={listAmount}></lightning-input>
+                    </div>
+                  </div>  
                 </div>
               </div>
               <!-- Col 2 -->
