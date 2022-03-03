@@ -2,13 +2,13 @@
     <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open slds-modal_medium" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1">
         <div class="slds-modal__container">
           <header class="slds-modal__header">
+            <!-- CLose "X" Button -->
             <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
-              <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
-                <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
-              </svg>
-              <span class="slds-assistive-text">Close</span>
+              <lightning-icon onclick={closeHandler} icon-name="utility:close" variant="inverse" alternative-text="close" title="Close">
+              </lightning-icon>
             </button>
-            <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Make Payment {name}</h2>
+            <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Make Payment</h2>
+            <h2 id="modal-heading-02" class="slds-modal__title slds-hyphenate">{name}</h2>
           </header>
           <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
             <!-- Grid Starts here -->
@@ -16,14 +16,17 @@
               <!-- Col 1 -->
               <div class="slds-col">
                 <div class="slds-box">
-                  <p>This is a regular-sized box.</p>
+                  <!-- <p>This is a regular-sized box.</p> -->
                   <fieldset class="slds-form-element slds-form-element_compound">
-                    <legend class="slds-form-element__legend slds-form-element__label">List Amount</legend>
+                    <!-- <legend class="slds-form-element__legend slds-form-element__label">List Amount</legend> -->
                     <div class="slds-form-element__control"></div>
                     </fieldset>
                   <div class="nowrap">
                     <div class="slds-form-element-row">
-                      <lightning-input name="listAmount" type="currency" value={listAmount}></lightning-input>
+                      <lightning-input name="listAmount" type="currency" label="List Amount" value={listAmount} read-only="true"></lightning-input>
+                    </div>
+                    <div class="slds-form-element-row">
+                      <lightning-input name="additionalPay" type="currency" label="Additional Payment" value={additionalPay} onchange={handleAdditionalPay}></lightning-input>
                     </div>
                   </div>  
                 </div>

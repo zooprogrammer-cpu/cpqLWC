@@ -4,7 +4,7 @@ import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import ID_FIELD from '@salesforce/schema/SBQQ__Quote__c.Id';
 import NAME_FIELD from '@salesforce/schema/SBQQ__Quote__c.Name';
 import LIST_AMOUNT_FIELD from '@salesforce/schema/SBQQ__Quote__c.SBQQ__ListAmount__c';
-
+import ADDITIONAL_PAYMENT_FIELD from '@salesforce/schema/SBQQ__Quote__c.Additional_Payment__c';
 
 export default class ReviewQuotePaymentLWC extends LightningElement {
     //store the data into these properties
@@ -22,7 +22,6 @@ export default class ReviewQuotePaymentLWC extends LightningElement {
                 console.log(data)
                 this.name=data.fields.Name.value
                 //repeat process for List Amount.If displayValue is there, show displayValue otherwise show value
-
                 this.listAmount=data.fields.SBQQ__ListAmount__c.displayValue ? data.fields.SBQQ__ListAmount__c.displayValue:
                 data.fields.SBQQ__ListAmount__c.value
             } else if(error){
@@ -39,4 +38,6 @@ export default class ReviewQuotePaymentLWC extends LightningElement {
     submitDetails(){
         
     }
+
+    
 }
