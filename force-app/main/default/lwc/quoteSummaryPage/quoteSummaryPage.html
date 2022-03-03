@@ -24,5 +24,10 @@
               
             </lightning-card>
         </div>
+        <div>
+            <template if:true={showModal}>
+                <c-review-quote-payment-l-w-c onclose={handleCloseMakePayment}></c-review-quote-payment-l-w-c>
+            </template>
+        </div>
     </lightning-card>
 </template>

@@ -22,4 +22,12 @@ export default class SimpleListQuoteLines extends LightningElement {
         }
     }
 
+    showModal = false
+    clickHandler(event){
+        this.showModal=true;
+    }
+    closeHandler(){
+        this.showModal=false;
+    }
+
 }

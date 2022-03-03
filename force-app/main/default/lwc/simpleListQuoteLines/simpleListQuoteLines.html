@@ -5,5 +5,13 @@
             <lightning-datatable data={quoteLines} columns={columns} key-field="Id"></lightning-datatable>
         </div>
 
+        <div>
+            <button class="slds-button slds-button_neutral" onclick={clickHandler}>Make Payment</button>
+
+            <template if:true={showModal}>
+                <c-review-quote-payment-l-w-c onclose={closeHandler}></c-review-quote-payment-l-w-c>
+            </template>
+        </div>
+
     </lightning-card>
 </template>

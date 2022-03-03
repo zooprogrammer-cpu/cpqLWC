@@ -58,11 +58,16 @@ export default class QuoteSummaryPage extends NavigationMixin(LightningElement) 
             }
         })
     }
-/* Button to Make Payment */
+/* Button to Make Payment Modal */
 
-    handleMakePayment(){
+   showModal= false
+   handleShowMakePayment(event){
+       this.showModal = true;
+   }
+   handleCloseMakePayment(event){
+       this.showModal =false;
+   }
 
-    }
 
 // Button to Edit Lines Page
     // handleGotoQle(){
