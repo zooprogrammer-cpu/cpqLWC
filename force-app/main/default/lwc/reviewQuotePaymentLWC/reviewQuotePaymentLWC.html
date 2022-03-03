@@ -26,7 +26,7 @@
                       <lightning-input name="listAmount" type="currency" label="List Amount" value={listAmount} read-only="true"></lightning-input>
                     </div>
                     <div class="slds-form-element-row">
-                      <lightning-input name="additionalPay" type="currency" label="Additional Payment" value={additionalPay} onchange={handleAdditionalPay}></lightning-input>
+                      <lightning-input name="additionalPayment" type="currency" label="Additional Payment" value={additionalPayment} onchange={changeHandler} onkeypress={handleKeyPress} onfocusout={focusOut} ></lightning-input>
                     </div>
                   </div>  
                 </div>
