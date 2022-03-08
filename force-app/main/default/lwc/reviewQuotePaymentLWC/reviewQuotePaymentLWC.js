@@ -62,9 +62,12 @@ export default class ReviewQuotePaymentLWC extends LightningElement {
         updateRecord(recordInput) //call update method to update the field. recordInput returns a promise
         .then(()=>{
             this.showToast("Success!!","Quote has been Updated", "success")
+            this.closeHandler()
+
         }).catch(error=>{
-            this.showToast("Error!!",error.message, "error")
-        })    
+            this.showToast("Error!!","Quote could not be updated", "error")
+        })
+
     }
     
     //Code to ShowToast when the record is updated
