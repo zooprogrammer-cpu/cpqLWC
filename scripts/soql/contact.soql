@@ -1,1 +1,1 @@
-SELECT ID,FirstName,LastName FROM Contact            
+SELECT Id,FirstName,LastName FROM Contact            
