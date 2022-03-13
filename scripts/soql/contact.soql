@@ -1,0 +1,1 @@
+SELECT ID,FirstName,LastName FROM Contact            
