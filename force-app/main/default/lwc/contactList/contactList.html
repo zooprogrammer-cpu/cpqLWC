@@ -1,0 +1,14 @@
+<template>
+    <lightning-card title="Contact list">
+        <div class="slds-p-horizontal_small" >
+            <template if:true={contacts.data}>
+                <template for:each={contacts.data} for:item="contact">
+                    <p key={contact.Id}>{contact.FirstName}</p>
+                </template>
+            </template>
+            <template if:true={contacts.error}>
+                Handle Error from lwc recipes panel
+            </template>
+        </div>
+    </lightning-card>
+</template>

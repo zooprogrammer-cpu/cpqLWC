@@ -6,4 +6,5 @@ public with sharing class ContactListController {
     public static List<Contact> getContacts(){
         return [SELECT Id,FirstName,LastName FROM Contact];
     }
+
 }
