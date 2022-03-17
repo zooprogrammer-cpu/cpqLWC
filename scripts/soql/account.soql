@@ -2,5 +2,16 @@
 // You can execute queries in VS Code by selecting the
 //     query text and running the command:
 //     SFDX: Execute SOQL Query with Currently Selected Text
-
-SELECT Id, Name FROM Account
+//Account SOQL file Mar 17
+SELECT Id, 
+Name, 
+Type, 
+BillingStreet, 
+BillingCity, 
+BillingState, 
+BillingPostalCode, 
+BillingCountry, 
+BillingAddress, 
+Industry, 
+Description
+FROM Account

@@ -1,0 +1,214 @@
+{
+    "records": [
+        {
+            "attributes": {
+                "type": "Account",
+                "referenceId": "AccountRef1"
+            },
+            "Name": "Sample Account for Entitlements"
+        },
+        {
+            "attributes": {
+                "type": "Account",
+                "referenceId": "AccountRef2"
+            },
+            "Name": "Edge Communications"
+        },
+        {
+            "attributes": {
+                "type": "Account",
+                "referenceId": "AccountRef3"
+            },
+            "Name": "Burlington Textiles Corp of America"
+        },
+        {
+            "attributes": {
+                "type": "Account",
+                "referenceId": "AccountRef4"
+            },
+            "Name": "Pyramid Construction Inc."
+        },
+        {
+            "attributes": {
+                "type": "Account",
+                "referenceId": "AccountRef5"
+            },
+            "Name": "Dickenson plc"
+        },
+        {
+            "attributes": {
+                "type": "Account",
+                "referenceId": "AccountRef6"
+            },
+            "Name": "Grand Hotels & Resorts Ltd"
+        },
+        {
+            "attributes": {
+                "type": "Account",
+                "referenceId": "AccountRef7"
+            },
+            "Name": "United Oil & Gas Corp."
+        },
+        {
+            "attributes": {
+                "type": "Account",
+                "referenceId": "AccountRef8"
+            },
+            "Name": "Express Logistics and Transport"
+        },
+        {
+            "attributes": {
+                "type": "Account",
+                "referenceId": "AccountRef9"
+            },
+            "Name": "University of Arizona"
+        },
+        {
+            "attributes": {
+                "type": "Account",
+                "referenceId": "AccountRef10"
+            },
+            "Name": "United Oil & Gas, UK"
+        },
+        {
+            "attributes": {
+                "type": "Account",
+                "referenceId": "AccountRef11"
+            },
+            "Name": "United Oil & Gas, Singapore"
+        },
+        {
+            "attributes": {
+                "type": "Account",
+                "referenceId": "AccountRef12"
+            },
+            "Name": "GenePoint"
+        },
+        {
+            "attributes": {
+                "type": "Account",
+                "referenceId": "AccountRef13"
+            },
+            "Name": "sForce"
+        },
+        {
+            "attributes": {
+                "type": "Account",
+                "referenceId": "AccountRef14"
+            },
+            "Name": "Game of Thrones"
+        },
+        {
+            "attributes": {
+                "type": "Account",
+                "referenceId": "AccountRef15"
+            },
+            "Name": "Australia5"
+        },
+        {
+            "attributes": {
+                "type": "Account",
+                "referenceId": "AccountRef16"
+            },
+            "Name": "AUSTRALIA"
+        },
+        {
+            "attributes": {
+                "type": "Account",
+                "referenceId": "AccountRef17"
+            },
+            "Name": "Australia"
+        },
+        {
+            "attributes": {
+                "type": "Account",
+                "referenceId": "AccountRef18"
+            },
+            "Name": "AUSTRALIA 35345"
+        },
+        {
+            "attributes": {
+                "type": "Account",
+                "referenceId": "AccountRef19"
+            },
+            "Name": "Australia 8"
+        },
+        {
+            "attributes": {
+                "type": "Account",
+                "referenceId": "AccountRef20"
+            },
+            "Name": "Blade Runner"
+        },
+        {
+            "attributes": {
+                "type": "Account",
+                "referenceId": "AccountRef21"
+            },
+            "Name": "test account"
+        },
+        {
+            "attributes": {
+                "type": "Account",
+                "referenceId": "AccountRef22"
+            },
+            "Name": "Eddard Stark LLC"
+        },
+        {
+            "attributes": {
+                "type": "Account",
+                "referenceId": "AccountRef23"
+            },
+            "Name": "Cersei Lannister LLC 2"
+        },
+        {
+            "attributes": {
+                "type": "Account",
+                "referenceId": "AccountRef24"
+            },
+            "Name": "Rickon Stark LLC"
+        },
+        {
+            "attributes": {
+                "type": "Account",
+                "referenceId": "AccountRef25"
+            },
+            "Name": "Robert Baratheon LLC"
+        },
+        {
+            "attributes": {
+                "type": "Account",
+                "referenceId": "AccountRef26"
+            },
+            "Name": "Australia"
+        },
+        {
+            "attributes": {
+                "type": "Account",
+                "referenceId": "AccountRef27"
+            },
+            "Name": "Sansa LLC"
+        },
+        {
+            "attributes": {
+                "type": "Account",
+                "referenceId": "AccountRef28"
+            },
+            "Name": "Hound Dog LLC"
+        },
+        {
+            "attributes": {
+                "type": "Account",
+                "referenceId": "AccountRef29"
+            },
+            "Name": "Joffrey Baratheon LLC"
+        },
+        {
+            "attributes": {
+                "type": "Account",
+                "referenceId": "AccountRef30"
+            },
+            "Name": "LittleFinger LLC"
+        }
+    ]
+}
