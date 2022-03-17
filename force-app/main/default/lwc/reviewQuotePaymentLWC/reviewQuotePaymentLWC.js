@@ -11,7 +11,7 @@ export default class ReviewQuotePaymentLWC extends LightningElement {
     name
     listAmount
     additionalPayment // can set to additionalPayment = 100 for intial default value
-
+    minimumPayment = 100
     //formFields ={} //this is where the input value for Additional Payment goes
 
     //we want recordId to be dynamic
@@ -69,4 +69,7 @@ export default class ReviewQuotePaymentLWC extends LightningElement {
             title,message,variant
         }))
     }
+
+    //Convert Min Payment to Currency
+    
 }

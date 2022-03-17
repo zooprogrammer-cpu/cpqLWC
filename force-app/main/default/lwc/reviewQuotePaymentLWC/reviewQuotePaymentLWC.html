@@ -28,6 +28,12 @@
                     <div class="slds-form-element-row">
                       <lightning-input name="additionalPayment" type="currency" label="Additional Payment" value={additionalPayment} onchange={changeHandler}></lightning-input>
                     </div>
+                    <div class="slds-form-element-row">
+                      Minimum Payment
+                      <div>
+                        <lightning-formatted-number label="Minimum Payment" value={minimumPayment} format-style="currency" currency-code="USD"></lightning-formatted-number>
+                      </div>
+                    </div>
                   </div>  
                 </div>
               </div>
