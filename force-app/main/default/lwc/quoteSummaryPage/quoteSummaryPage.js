@@ -3,6 +3,7 @@ import {CurrentPageReference} from 'lightning/navigation';
 import { NavigationMixin } from 'lightning/navigation';
 import getQuoteLines from '@salesforce/apex/QuoteSummaryController.getQuoteLines';
 import getQuote from '@salesforce/apex/QuoteSummaryController.getQuote';
+//import upsertQSPQuoteLine from '@salesforce/apex/QuoteSummaryController.upsertQSPQuoteLine';
 export default class QuoteSummaryPage extends NavigationMixin(LightningElement) {
     @track quoteLines;
     @track columns =[
@@ -70,14 +71,27 @@ export default class QuoteSummaryPage extends NavigationMixin(LightningElement) 
 
 
 // Button to Edit Lines Page
-    // handleGotoQle(){
-    //     this[NavigationMixin.Navigate]({ 
-    //         type:'standard__recordPage',
-    //         attributes:{ 
-    //             recordId:this.pageRef.state.c__quoteId,
-    //             objectApiName:'SBQQ__Quote__c',
-    //             actionName:'view'
-    //         }
+    gotoQLE(event){
+        console.log(`starting QLE`)
+        this[NavigationMixin.Navigate]({ 
+            type:'standard__webPage',
+            attributes:{ 
+                //recordId:this.pageRef.state.c__quoteId,
+                //objectApiName:'SBQQ__Quote__c',
+                //actionName:'view',
+                recordId:this.pageRef.state.c__quoteId,
+                url:'/apex/sbqq__sb?scontrolCaching=1&id='+ 'a0q5f000001mtYAAAY' + '#quote/le?qId=' + 'a0q5f000001mtYAAAY'
+            }
+        }).then(generatedUrl=>{
+            console.log(generatedUrl)
+            window.open(generatedUrl)
+        })
+    }
+
+    // insertQSPQuoteLine(){
+    //     console.log('Adding QSP Quote Line')
+    //     upsertQSPQuoteLine({quoteId:this.quoteId,
+
     //     })
     // }
 }

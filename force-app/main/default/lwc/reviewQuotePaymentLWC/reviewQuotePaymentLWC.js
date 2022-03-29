@@ -70,6 +70,5 @@ export default class ReviewQuotePaymentLWC extends LightningElement {
         }))
     }
 
-    //Convert Min Payment to Currency
     
 }

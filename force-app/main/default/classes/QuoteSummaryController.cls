@@ -7,11 +7,23 @@ public with sharing class QuoteSummaryController {
         return quote; 
 
     }
-
+    //getQuoteLines is the method name that gets all of the quote lines for this quote with quoteID
     @AuraEnabled(cacheable=true)
     
     public static List<SBQQ__QuoteLine__c> getQuoteLines(String quoteId){ 
         return [SELECT Id, SBQQ__ProductName__c,SBQQ__Quantity__c FROM SBQQ__QuoteLine__c WHERE SBQQ__Quote__c=:quoteId];
     }
+
+    //upsertQSPQuoteLines
+    // @AuraEnabled
+    // public static string upsertQSPQuoteLine(String quoteId, 
+    //                                         Decimal qspAmount, 
+    //                                         String bundleId, 
+    //                                         String bundleProductId,
+    //                                         Integer quoteLineNumber,
+    //                                         Boolean hasQSP){
+    // Product2 qspProduct = [SELECT Id, ProductCode FROM Product2 WHERE ProductCode =:qspProductCode LIMIT 1]; 
+      
+    // }
 
 }
