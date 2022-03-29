@@ -70,7 +70,7 @@ export default class QuoteSummaryPage extends NavigationMixin(LightningElement) 
     }
 
 
-// Button to Edit Lines Page
+// Button to QLE/Configurator
     gotoQLE(){
         console.log(`starting QLE`)
         this[NavigationMixin.Navigate]({ 
