@@ -71,7 +71,7 @@ export default class QuoteSummaryPage extends NavigationMixin(LightningElement) 
 
 
 // Button to Edit Lines Page
-    gotoQLE(event){
+    gotoQLE(){
         console.log(`starting QLE`)
         this[NavigationMixin.Navigate]({ 
             type:'standard__webPage',
@@ -80,7 +80,7 @@ export default class QuoteSummaryPage extends NavigationMixin(LightningElement) 
                 //objectApiName:'SBQQ__Quote__c',
                 //actionName:'view',
                 recordId:this.pageRef.state.c__quoteId,
-                url:'/apex/sbqq__sb?scontrolCaching=1&id='+ 'a0q5f000001mtYAAAY' + '#quote/le?qId=' + 'a0q5f000001mtYAAAY'
+                url:'/apex/sbqq__sb?scontrolCaching=1&id='+ this.pageRef.state.c__quoteId + '#quote/le?qId=' + this.pageRef.state.c__quoteId
             }
         }).then(generatedUrl=>{
             console.log(generatedUrl)
