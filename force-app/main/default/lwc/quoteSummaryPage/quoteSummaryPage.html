@@ -1,9 +1,9 @@
 <template>
     <lightning-card title="Quote Summary Page child component">
-        <div class="slds-m-around_medium">
-            <button class="slds-button slds-button_neutral" onclick={handleReturntoQuoteDetail}>Return to Quote Detail</button>
-            <button class="slds-button slds-button_neutral" onclick={gotoQLE}>Modify Quote Test</button>
-            <button class="slds-button slds-button_neutral" onclick={clickHandler}>Make Payment</button>
+        <div class="slds-m-around_medium slds-clearfix">
+            <button class="slds-button slds-button_neutral slds-float_right" onclick={handleReturntoQuoteDetail}>Return to Quote Detail</button>
+            <button class="slds-button slds-button_neutral slds-float_right" onclick={gotoQLE}>Modify Quote Test</button>
+            <button class="slds-button slds-button_neutral slds-float_right" onclick={clickHandler}>Make Payment</button>
 
         </div>
         <!-- Print Quote Name in Quote Summary Page Start -->
@@ -45,7 +45,7 @@
                 <td></td>
                 <td></td>
                 <td><strong>Total Amount:</strong></td>
-                <td><strong>${totalAmount}</strong></td>
+                <td><strong><lightning-formatted-number value={totalAmount} format-style="currency" currency-code="USD"></lightning-formatted-number></strong></td>
                 
             </table>
            
