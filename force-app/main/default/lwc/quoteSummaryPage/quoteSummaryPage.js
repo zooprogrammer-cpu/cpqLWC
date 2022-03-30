@@ -9,7 +9,10 @@ export default class QuoteSummaryPage extends NavigationMixin(LightningElement) 
     @track columns =[
         {label:'Id', fieldName: 'Id', type: 'text'}, 
         {label:'Product Name', fieldName:'SBQQ__ProductName__c',type: 'text' },
-        {label:'Qty', fieldName: 'SBQQ__Quantity__c',type: 'text'}
+        {label:'Qty', fieldName: 'SBQQ__Quantity__c',type: 'text'},
+        {label:'Net Unit Price', fieldName: 'SBQQ__NetPrice__c',type: 'number'},
+        {label:'Net Total Price', fieldName: 'SBQQ__NetTotal__c',type: 'number'},
+
     ];
       //Capture quoteId
       @wire(CurrentPageReference)
@@ -27,7 +30,7 @@ export default class QuoteSummaryPage extends NavigationMixin(LightningElement) 
     @wire(getQuoteLines,{quoteId:'$quoteIden'})
     quoteLinesHandler({data,error}){
         if(data){
-            console.log(data)
+            console.log(`quoteLinesHandler data:`,data)
             this.quoteLines = data; 
             
         }
@@ -35,6 +38,10 @@ export default class QuoteSummaryPage extends NavigationMixin(LightningElement) 
             console.error(error)
         }
     }
+
+    //Quote Lines Table
+    headings = ["Id", "Product Name", "Quantity", "Net Unit Price","Net Total Price"]
+
     //Capture Quote Name
     @wire (getQuote,{quoteId:'$quoteIden'})
     quoteHandler({data,error}){
@@ -94,4 +101,7 @@ export default class QuoteSummaryPage extends NavigationMixin(LightningElement) 
 
     //     })
     // }
+
+
+    
 }

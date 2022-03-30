@@ -21,6 +21,33 @@
             </template>
         </div>
         <!-- Display Quote Lines End -->
+        <!-- Display Quote Lines Table Start -->
+        <template if:true={quoteLines}>
+            <table class="slds-table slds-table_cell-buffer slds-table_bordered" aria-label="Example default base table of Opportunities">
+                <thead>
+                    <tr>
+                        <template for:each={headings} for:item="heading">
+                            <th key={heading}>{heading}</th>
+                        </template>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={quoteLines} for:item="data">
+                        <tr key={data.Id}>
+                            <td>{data.Id}</td>
+                            <td>{data.SBQQ__ProductName__c}</td>
+                            <td>{data.SBQQ__Quantity__c}</td>
+                            <td>{data.SBQQ__NetPrice__c}</td> 
+                            <td>{data.SBQQ__NetTotal__c}</td> 
+ 
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </template>
+       
+
+        <!-- Display Quote Lines Table End -->
 
         <div>
             <lightning-card title="Current Page Reference">
