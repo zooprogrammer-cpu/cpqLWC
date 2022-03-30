@@ -34,14 +34,15 @@
                 <tbody>
                     <template for:each={quoteLines} for:item="data">
                         <tr key={data.Id}>
-                            
                             <td>{data.SBQQ__ProductName__c} </td>
+                            <td>{data.SBQQ__ProductFamily__c} </td>
                             <td>{data.SBQQ__Quantity__c}</td>
                             <td class="rightText"><lightning-formatted-number value={data.SBQQ__NetPrice__c} format-style="currency" currency-code="USD"></lightning-formatted-number></td> 
                             <td class="rightText"><lightning-formatted-number value={data.SBQQ__NetTotal__c} format-style="currency" currency-code="USD"></lightning-formatted-number></td> 
                         </tr>
                     </template>
                 </tbody>
+                <td></td>
                 <td></td>
                 <td></td>
                 <td><strong>Total Amount:</strong></td>

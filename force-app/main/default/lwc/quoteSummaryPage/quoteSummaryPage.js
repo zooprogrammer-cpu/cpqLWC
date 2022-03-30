@@ -8,6 +8,7 @@ export default class QuoteSummaryPage extends NavigationMixin(LightningElement) 
     @track quoteLines;
     @track columns =[
         {label:'Product Name', fieldName:'SBQQ__ProductName__c',type: 'text' },
+        {label:'Product Family', fieldName:'SBQQ__ProductFamily__c',type: 'text' },
         {label:'Qty', fieldName: 'SBQQ__Quantity__c',type: 'text'},
         {label:'Net Unit Price', fieldName: 'SBQQ__NetPrice__c',type: 'currency'},
         {label:'Net Total Price', fieldName: 'SBQQ__NetTotal__c',type: 'currency'},
@@ -40,7 +41,7 @@ export default class QuoteSummaryPage extends NavigationMixin(LightningElement) 
     }
 
     //Quote Lines Table
-    headings = ["Product Name", "Quantity", "Net Unit Price","Net Total Price"]
+    headings = ["Product Name", "Product Family", "Quantity", "Net Unit Price","Net Total Price"]
 
     get totalAmount(){
         return this.quoteLines.reduce((total,value)=>{
