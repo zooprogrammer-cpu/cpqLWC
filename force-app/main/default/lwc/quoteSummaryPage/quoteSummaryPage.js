@@ -7,7 +7,6 @@ import getQuote from '@salesforce/apex/QuoteSummaryController.getQuote';
 export default class QuoteSummaryPage extends NavigationMixin(LightningElement) {
     @track quoteLines;
     @track columns =[
-        {label:'Id', fieldName: 'Id', type: 'text'}, 
         {label:'Product Name', fieldName:'SBQQ__ProductName__c',type: 'text' },
         {label:'Qty', fieldName: 'SBQQ__Quantity__c',type: 'text'},
         {label:'Net Unit Price', fieldName: 'SBQQ__NetPrice__c',type: 'currency'},
@@ -41,7 +40,7 @@ export default class QuoteSummaryPage extends NavigationMixin(LightningElement) 
     }
 
     //Quote Lines Table
-    headings = ["Id", "Product Name", "Quantity", "Net Unit Price","Net Total Price"]
+    headings = ["Product Name", "Quantity", "Net Unit Price","Net Total Price"]
 
     get totalAmount(){
         return this.quoteLines.reduce((total,value)=>{
