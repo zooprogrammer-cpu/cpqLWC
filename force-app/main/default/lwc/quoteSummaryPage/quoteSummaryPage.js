@@ -42,12 +42,7 @@ export default class QuoteSummaryPage extends NavigationMixin(LightningElement) 
     //Quote Lines Table
     headings = ["Product Name", "Product Family", "Quantity", "Net Unit Price","Net Total Price"]
 
-    get totalAmount(){
-        return this.quoteLines.reduce((total,value)=>{
-            return total = total + value.SBQQ__NetTotal__c
-        },0)
-        
-    }
+    
     //get the hardware quotelines
 
     get hardwareQuoteLines(){
@@ -58,6 +53,13 @@ export default class QuoteSummaryPage extends NavigationMixin(LightningElement) 
 
      get softwareQuoteLines(){
         return this.quoteLines.filter((quoteLine)=>quoteLine.SBQQ__ProductFamily__c==="Software")
+    }
+
+    get totalAmount(){
+        return this.quoteLines.reduce((total,value)=>{
+            return total = total + value.SBQQ__NetTotal__c
+        },0)
+        
     }
 
     //Capture Quote Name

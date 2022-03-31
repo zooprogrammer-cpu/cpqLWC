@@ -12,16 +12,8 @@
                 Quote Name:{quoteNames.Name}
         </template>
         </div>
-        <!-- Print Quote Name in Quote Summary Page End -->
-        <!-- Display Quote Lines Start -->
-        <!-- <div class="slds-m-around_medium slds-align_absolute-center">
-            <template if:true={quoteLines}>
-                <lightning-datatable data={quoteLines} columns={columns} key-field="Id"></lightning-datatable>
-
-            </template>
-        </div> -->
-        <!-- Display Quote Lines End -->
-        <!-- Display Quote Lines Table 2 Start -->
+        <!-- Hardware Quote Lines Table Start -->
+        <div class="slds-text-heading_medium slds-m-around_medium" >Hardware Products</div>
         <template if:true={quoteLines}>
             <table class="slds-table slds-table_cell-buffer slds-table_bordered" aria-label="Example default base table of Opportunities">
                 <thead>
@@ -31,17 +23,7 @@
                         </template>
                     </tr>
                 </thead>
-                <!-- <tbody>
-                    <template for:each={quoteLines} for:item="data">
-                        <tr key={data.Id}>
-                            <td>{data.SBQQ__ProductName__c} </td>
-                            <td>{data.SBQQ__ProductFamily__c} </td>
-                            <td>{data.SBQQ__Quantity__c}</td>
-                            <td class="rightText"><lightning-formatted-number value={data.SBQQ__NetPrice__c} format-style="currency" currency-code="USD"></lightning-formatted-number></td> 
-                            <td class="rightText"><lightning-formatted-number value={data.SBQQ__NetTotal__c} format-style="currency" currency-code="USD"></lightning-formatted-number></td> 
-                        </tr>
-                    </template>
-                </tbody> -->
+                
                 <tbody>
                     <template for:each={hardwareQuoteLines} for:item="data">
                         <tr key={data.Id}>
@@ -62,9 +44,45 @@
             </table>
             
         </template>
+        <!-- Hardware Quote Lines Table End -->
+
        
 
-        <!-- Display Quote Lines Table 2 End -->
+        <!-- Software Quote Lines Table Start -->
+        <div class="slds-text-heading_medium slds-m-around_medium">Software Products</div>
+        <template if:true={quoteLines}>
+            <table class="slds-table slds-table_cell-buffer slds-table_bordered" aria-label="Example default base table of Opportunities">
+                <thead>
+                    <tr>
+                        <template for:each={headings} for:item="heading">
+                            <th key={headings}>{heading}</th>
+                        </template>
+                    </tr>
+                </thead>
+             
+                <tbody>
+                    <template for:each={softwareQuoteLines} for:item="data">
+                        <tr key={data.Id}>
+                            <td>{data.SBQQ__ProductName__c} </td>
+                            <td>{data.SBQQ__ProductFamily__c} </td>
+                            <td>{data.SBQQ__Quantity__c}</td>
+                            <td class="rightText"><lightning-formatted-number value={data.SBQQ__NetPrice__c} format-style="currency" currency-code="USD"></lightning-formatted-number></td> 
+                            <td class="rightText"><lightning-formatted-number value={data.SBQQ__NetTotal__c} format-style="currency" currency-code="USD"></lightning-formatted-number></td> 
+                        </tr>
+                    </template>
+                </tbody>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><strong>Total Amount:</strong></td>
+                <td><strong><lightning-formatted-number value={totalAmount} format-style="currency" currency-code="USD"></lightning-formatted-number></strong></td>
+                
+            </table>
+            
+        </template>
+        <!-- Software Quote Lines Table End -->
+
+
         <!-- Retreive current page reference -->
         <!-- <div>
             <lightning-card title="Current Page Reference">
