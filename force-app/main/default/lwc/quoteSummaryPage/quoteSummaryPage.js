@@ -12,9 +12,8 @@ export default class QuoteSummaryPage extends NavigationMixin(LightningElement) 
         {label:'Qty', fieldName: 'SBQQ__Quantity__c',type: 'text'},
         {label:'Net Unit Price', fieldName: 'SBQQ__NetPrice__c',type: 'currency'},
         {label:'Net Total Price', fieldName: 'SBQQ__NetTotal__c',type: 'currency'},
-
-
     ];
+    
       //Capture quoteId
       @wire(CurrentPageReference)
       pageRef
@@ -49,7 +48,18 @@ export default class QuoteSummaryPage extends NavigationMixin(LightningElement) 
         },0)
         
     }
-    
+    //get the hardware quotelines
+
+    get hardwareQuoteLines(){
+        return this.quoteLines.filter((quoteLine)=>quoteLine.SBQQ__ProductFamily__c==="Hardware")
+    }
+
+     //get the software quotelines
+
+     get softwareQuoteLines(){
+        return this.quoteLines.filter((quoteLine)=>quoteLine.SBQQ__ProductFamily__c==="Software")
+    }
+
     //Capture Quote Name
     @wire (getQuote,{quoteId:'$quoteIden'})
     quoteHandler({data,error}){
