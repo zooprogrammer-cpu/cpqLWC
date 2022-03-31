@@ -49,14 +49,21 @@ export default class QuoteSummaryPage extends NavigationMixin(LightningElement) 
         return this.quoteLines.filter((quoteLine)=>quoteLine.SBQQ__ProductFamily__c==="Hardware")
     }
 
+    get hardwareTotalAmount(){
+        return this.hardwareQuoteLines.reduce((total,value)=>{
+            return total = total + value.SBQQ__NetTotal__c
+        },0)
+        
+    }
+    
      //get the software quotelines
 
      get softwareQuoteLines(){
         return this.quoteLines.filter((quoteLine)=>quoteLine.SBQQ__ProductFamily__c==="Software")
     }
 
-    get totalAmount(){
-        return this.quoteLines.reduce((total,value)=>{
+    get softwareTotalAmount(){
+        return this.softwareQuoteLines.reduce((total,value)=>{
             return total = total + value.SBQQ__NetTotal__c
         },0)
         
