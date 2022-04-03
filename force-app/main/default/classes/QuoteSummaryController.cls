@@ -1,5 +1,5 @@
 public with sharing class QuoteSummaryController {
-    @AuraEnabled(cacheable=false)
+    @AuraEnabled(cacheable=true)
     // getQuote is the method name and it will receive some parameter quoteId, 
     //first parameter is quoteId which is a string
     public static SBQQ__Quote__c getQuote(Id quoteId){
