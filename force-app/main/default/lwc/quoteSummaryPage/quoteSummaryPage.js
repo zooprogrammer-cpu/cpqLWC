@@ -18,9 +18,9 @@ export default class QuoteSummaryPage extends NavigationMixin(LightningElement) 
       @wire(CurrentPageReference)
       pageRef
   
-    //   get PageReference(){
-    //       return this.pageRef ? JSON.stringify(this.pageRef,null,2):''
-    //   }
+      get PageReference(){
+          return this.pageRef ? JSON.stringify(this.pageRef,null,2):''
+      }
   
       get quoteIden(){
           return (this.pageRef.state.c__quoteId)
