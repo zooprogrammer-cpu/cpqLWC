@@ -8,7 +8,7 @@ public with sharing class QuoteSummaryController {
 
     }
     //getQuoteLines is the method name that gets all of the quote lines for this quote with quoteID
-    //@AuraEnabled(cacheable=true)
+    @AuraEnabled(cacheable=true)
     
     public static List<SBQQ__QuoteLine__c> getQuoteLines(String quoteId){ 
         return [SELECT Id, SBQQ__ProductName__c,SBQQ__Description__c,SBQQ__Quantity__c,SBQQ__NetPrice__c,SBQQ__NetTotal__c,SBQQ__ProductFamily__c FROM SBQQ__QuoteLine__c WHERE SBQQ__Quote__c=:quoteId];
