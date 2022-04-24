@@ -75,7 +75,7 @@ export default class QuoteSummaryPage extends NavigationMixin(LightningElement) 
         if(data){
             console.log(data)
             console.log(data.Name)
-            this.quoteNames = data;
+            this.quoteData = data;
         }
         if(error){
             console.error(error)
