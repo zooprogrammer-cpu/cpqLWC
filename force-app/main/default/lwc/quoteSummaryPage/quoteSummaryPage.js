@@ -1,11 +1,15 @@
 import { LightningElement,api,wire,track } from 'lwc';
 import {CurrentPageReference} from 'lightning/navigation';
 import { NavigationMixin } from 'lightning/navigation';
+import { refreshApex } from '@salesforce/apex';
+import { updateRecord } from 'lightning/uiRecordApi';
+
 import getQuoteLines from '@salesforce/apex/QuoteSummaryController.getQuoteLines';
 import getQuote from '@salesforce/apex/QuoteSummaryController.getQuote';
 //import upsertQSPQuoteLine from '@salesforce/apex/QuoteSummaryController.upsertQSPQuoteLine';
 export default class QuoteSummaryPage extends NavigationMixin(LightningElement) {
     @track quoteLines;
+    @track error; 
     @track columns =[
         {label:'Product Name', fieldName:'SBQQ__ProductName__c',type: 'text' },
         {label:'Product Family', fieldName:'SBQQ__ProductFamily__c',type: 'text' },
@@ -28,14 +32,15 @@ export default class QuoteSummaryPage extends NavigationMixin(LightningElement) 
 
     //Capture Quote Lines 
     @wire(getQuoteLines,{quoteId:'$quoteIden'})
-    quoteLinesHandler({data,error}){
-        if(data){
-            console.log(`quoteLinesHandler data:`,data)
-            this.quoteLines = data; 
-            
+    quoteLinesHandler(result){
+        this.quoteLinesResult = result; 
+        if(result.data){
+            console.log(`quoteLinesHandler data:`,result.data)
+            this.quoteLines = result.data; 
+            refreshApex(this.quoteLinesResult);
         }
-        if(error){
-            console.error(error)
+        if(result.error){
+            console.error(result.error)
         }
     }
 
