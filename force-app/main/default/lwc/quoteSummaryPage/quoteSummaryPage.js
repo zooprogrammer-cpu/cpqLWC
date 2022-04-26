@@ -18,17 +18,17 @@ export default class QuoteSummaryPage extends NavigationMixin(LightningElement) 
         {label:'Net Total Price', fieldName: 'SBQQ__NetTotal__c',type: 'currency'},
     ];
     
-      //Capture quoteId
-      @wire(CurrentPageReference)
-      pageRef
+    //Capture quoteId
+    @wire(CurrentPageReference)
+    pageRef
   
-      get PageReference(){
-          return this.pageRef ? JSON.stringify(this.pageRef,null,2):''
-      }
+    //   get PageReference(){
+    //       return this.pageRef ? JSON.stringify(this.pageRef,null,2):''
+    //   }
   
-      get quoteIden(){
-          return (this.pageRef.state.c__quoteId)
-      }
+    get quoteIden(){
+        return (this.pageRef.state.c__quoteId)
+    }
 
     //Capture Quote Lines 
     @wire(getQuoteLines,{quoteId:'$quoteIden'})
@@ -126,6 +126,7 @@ export default class QuoteSummaryPage extends NavigationMixin(LightningElement) 
             window.open(generatedUrl)
         })
     }
+    
 
     // insertQSPQuoteLine(){
     //     console.log('Adding QSP Quote Line')
@@ -133,7 +134,4 @@ export default class QuoteSummaryPage extends NavigationMixin(LightningElement) 
 
     //     })
     // }
-
-
-    
 }
