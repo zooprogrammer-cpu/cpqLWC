@@ -126,6 +126,12 @@ export default class QuoteSummaryPage extends NavigationMixin(LightningElement) 
             window.open(generatedUrl)
         })
     }
+
+    // refreshHandler(){
+    //     console.log('Refreshing Quote Lines');
+    //     return refreshApex(this.quoteLinesResult);
+
+    // }
     
 
     // insertQSPQuoteLine(){
