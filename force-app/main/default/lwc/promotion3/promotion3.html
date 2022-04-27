@@ -1,0 +1,36 @@
+<template>
+    <lightning-card
+        title="Promotions"
+        icon-name="custom:custom63"
+    >
+        <div class="slds-var-m-around_medium">
+            <lightning-layout
+                vertical-align="end"
+                class="slds-var-m-bottom_small"
+            >
+                <lightning-layout-item flexibility="grow">
+                    <lightning-input
+                        type="search"
+                        onchange={handleKeyChange}
+                        label="Search"
+                        value={searchKey}
+                    ></lightning-input>
+                </lightning-layout-item>
+                <lightning-layout-item class="slds-var-p-left_xx-small">
+                    <lightning-button
+                        label="Search"
+                        onclick={handleSearch}
+                    ></lightning-button>
+                </lightning-layout-item>
+            </lightning-layout>
+            <template if:true={promotions}>
+                <template for:each={promotions} for:item="promotion">
+                    <p key={promotion.Id}>{promotion.Name}</p>
+                </template>
+            </template>
+        </div>
+        <!-- <template if:true={error}>
+            <c-error-panel errors={error}></c-error-panel>
+        </template> -->
+    </lightning-card>
+</template>
