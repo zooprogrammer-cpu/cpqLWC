@@ -1,5 +1,5 @@
 import { LightningElement } from 'lwc';
-import getPromotionList from '@salesforce/apex/PromotionController.getPromotionList';
+import findPromotions from '@salesforce/apex/PromotionController.findPromotions';
 export default class Promotion3 extends LightningElement {
     searchKey = '';
     promotions;
@@ -10,7 +10,7 @@ export default class Promotion3 extends LightningElement {
     }
 
     handleSearch() {
-        getPromotionList({ searchKey: this.searchKey })
+        findPromotions({ searchKey: this.searchKey })
             .then((result) => {
                 this.promotions = result;
                 this.error = undefined;

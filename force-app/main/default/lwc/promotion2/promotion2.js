@@ -2,7 +2,7 @@ import { LightningElement,wire } from 'lwc';
 import { refreshApex } from '@salesforce/apex';
 import getPromotionList from '@salesforce/apex/PromotionController.getPromotionList';
 export default class Promotion2 extends LightningElement {
-    headings=["Id", "Name"]
+    headings=["Name"]
     fullTableData=[]
     filteredData=[]
     timer
@@ -24,7 +24,7 @@ export default class Promotion2 extends LightningElement {
     get FilterByOptions(){
         return [
             {label:"All", value:'All'},
-            {label:"Id", value:'Id'},
+            //{label:"Id", value:'Id'},
             {label:'Name', value:'Name'},
         ]
     }
