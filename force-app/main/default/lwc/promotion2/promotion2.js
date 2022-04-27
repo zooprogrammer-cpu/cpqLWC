@@ -1,31 +1,31 @@
-import { LightningElement,api,wire} from 'lwc';
+import { LightningElement,wire } from 'lwc';
+import { refreshApex } from '@salesforce/apex';
 import getPromotionList from '@salesforce/apex/PromotionController.getPromotionList';
-
-export default class PromotionComponent extends LightningElement {
-    headings=["Id","Name"]
+export default class Promotion2 extends LightningElement {
+    headings=["Id", "Name"]
     fullTableData=[]
-    filteredTableData=[]
+    filteredData=[]
     timer
-    filterBy = "All"
-    @api quotedata;
+    filterBy="Name"
     @wire(getPromotionList)
-    promoHandler({data,error}){
-        if(data){
-            console.log(data)
-            this.fullTableDate = data
-            this.filteredTableData = data
+    promotionHandler(result){
+        this.wiredPromoResult = result; 
+        if(result.data){
+            console.log("Promotion data",result.data)
+            this.fullTableData = result.data
+            this.filteredData = result.data
+            refreshApex(this.wiredPromoResult)
         }
-        if(error){
-            console.log(error)
+        if(result.error){
+            console.log(result.error)
         }
     }
-
 
     get FilterByOptions(){
         return [
             {label:"All", value:'All'},
             {label:"Id", value:'Id'},
-            {label:'Name', value:'Name'}
+            {label:'Name', value:'Name'},
         ]
     }
 
@@ -58,6 +58,4 @@ export default class PromotionComponent extends LightningElement {
         }
         
     }
-
-
 }

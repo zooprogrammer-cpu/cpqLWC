@@ -16,9 +16,14 @@
                 Quote Name:{quoteData.Name}
         </template>
         </div>
-        <!-- <div>
-            <c-promotion-component quotedata={quoteData}></c-promotion-component>
-        </div> -->
+        <lightning-card>
+            <div>
+                <c-promotion2 quotedata={quoteData}></c-promotion2>
+            </div>
+        </lightning-card>
+       
+        
+      
         <!-- Hardware Quote Lines Table Start -->
         <div class="slds-text-heading_medium slds-m-around_medium" >Hardware Products</div>
         <template if:true={quoteLines}>

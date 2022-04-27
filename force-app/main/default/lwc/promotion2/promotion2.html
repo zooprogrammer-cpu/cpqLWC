@@ -1,0 +1,33 @@
+<template>
+    <lightning-card title="Available Promotions">
+        <div class="slds-p-around_medium">
+            <lightning-layout>
+                <lightning-layout-item size="2" padding="around-small">
+                   <lightning-combobox name="filterBy" value={filterBy} label="Filter By"
+                   options={FilterByOptions} onchange={filterbyHandler}></lightning-combobox>
+                </lightning-layout-item>
+                <lightning-layout-item size="4" padding="around-small">
+                    <lightning-input type="text" label="Filter" onkeyup={filterHandler}></lightning-input>
+                </lightning-layout-item>
+            </lightning-layout>
+            <table>
+                <thead>
+                    <tr>
+                        <template for:each={headings} for:item="heading">
+                            <th key={heading}>{heading}</th>
+                        </template>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={filteredData} for:item="data">
+                        <tr key={data.Id}>
+                            <td>{data.Id}</td>
+                            <td>{data.Name}</td>
+                        </tr>
+                    </template>
+                    
+                </tbody>
+            </table>
+        </div>
+    </lightning-card>
+</template>
