@@ -14,16 +14,25 @@ export default class CustomSearchWireService extends LightningElement {
             this.promos = result; 
         })
         .catch(error=>{
-            this.accounts = null; 
+            this.promos = null; 
         });
     }
     */
 
     cols= [
         {label:'Name', fieldName:'Name' , type: 'text' },
-        {label:'Qualifying Products', fieldName:'Qualifying_Product__c' , type: 'text' }
+        //{label:'Qualifying Products', fieldName:'Qualifying_Product__c' , type: 'text' }
 
     ]
-    @wire(getPromotions,{searchkey:'$key'}) promos; 
+    @wire(getPromotions,{searchkey:'$key'}) 
+    wiredPromo({data,error}){
+        if (data) {
+            this.promos = data;
+            this.error = undefined;
+        } else if (error) {
+            this.error = error;
+            this.promos = undefined;
+        }
+    }; 
 
 }
