@@ -21,6 +21,8 @@ export default class CustomSearchWireService extends LightningElement {
 
     cols= [
         {label:'Name', fieldName:'Name' , type: 'text' },
+        {label:'Start Date', fieldName:'Start_Date__c' , type: 'date' },
+        {label:'End Date', fieldName:'End_Date__c' , type: 'date' }
         //{label:'Qualifying Products', fieldName:'Qualifying_Product__c' , type: 'text' }
 
     ]
