@@ -12,7 +12,7 @@ public with sharing class PromotionController {
             FROM Promotion__c
             WHERE Name LIKE :key
             WITH SECURITY_ENFORCED
-            LIMIT 10
+            
         ];
     }
     

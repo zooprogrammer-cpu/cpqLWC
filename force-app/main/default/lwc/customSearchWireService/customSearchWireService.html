@@ -1,12 +1,9 @@
 <template>
-    <lightning-card title = "Promotion Search with Wire Service">
+    <lightning-card title = "Search Promotions">
         <lightning-layout multiple-rows="true" vertical-align="end">
             <lightning-layout-item size="4" padding="around-small">
                 <lightning-input type="text" label="Search for Promotion" value={key} onchange={updateKey}></lightning-input> 
             </lightning-layout-item>
-            <!-- <lightning-layout-item size="12" padding="around-small">
-                <lightning-button label="Search" onclick={handleSearch} variant ="brand"></lightning-button>
-            </lightning-layout-item> -->
             <lightning-layout-item size="12" padding="around-small">
                 <lightning-datatable key-field = "id" data={promos} columns={cols}></lightning-datatable>
             </lightning-layout-item>

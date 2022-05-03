@@ -1,6 +1,21 @@
 import { LightningElement, track, wire } from 'lwc';
 import getPromotions from '@salesforce/apex/PromotionController.getPromotions';
-export default class CustomSearchWireService extends LightningElement {
+export default class PromotionSearchModal extends LightningElement {
+    closeHandler(){ 
+        const myEvent = new CustomEvent('close',{
+            bubbles:true,
+            detail:{
+                msg:"Modal closed succesfully"
+            } 
+        })
+        this.dispatchEvent(myEvent)
+    }
+
+    footerHandler(){
+        console.log("Footer Event Called")
+    }
+
+    
     key;
     selection; 
     @track promos; 
@@ -37,5 +52,9 @@ export default class CustomSearchWireService extends LightningElement {
             .map((element) => element.label);
         this.selection = checked.join(',');         
     }
+    
+    
+    
+
 
 }
