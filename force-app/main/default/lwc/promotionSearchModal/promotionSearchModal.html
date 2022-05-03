@@ -2,10 +2,16 @@
     <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open slds-modal_small" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1">
         <div class="slds-modal__container">
         <header class="slds-modal__header">
+            <!-- CLose "X" Button -->
+            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+                <lightning-icon onclick={closeHandler} icon-name="utility:close" variant="inverse" alternative-text="close" title="Close">
+                </lightning-icon>
+              </button>
             <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Available Promotions</h2>
         </header>
-        
-            <lightning-card title = "Search Promotions">
+        <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+
+            <!-- <lightning-card title = "Search Promotions"> -->
                 <lightning-layout multiple-rows="true" vertical-align="end">
                     <lightning-layout-item size="4" padding="around-small">
                         <lightning-input type="text" label="Search for Promotion" value={key} onchange={updateKey}></lightning-input> 
@@ -14,11 +20,11 @@
                         <lightning-datatable key-field = "id" data={promos} columns={cols}></lightning-datatable>
                     </lightning-layout-item>
                 </lightning-layout>
-                <button class="slds-button slds-button_brand" onclick={closeHandler}>Ok</button>
-            </lightning-card>
-       
+                <!-- <button class="slds-button slds-button_brand" onclick={closeHandler}>Ok</button> -->
+            <!-- </lightning-card> -->
+        </div>
         <footer class="slds-modal__footer" onclick={footerHandler}>
-            <button class="slds-button slds-button_brand" onclick={closeHandler}>Ok</button>
+            <button class="slds-button slds-button_brand" onclick={closeHandler}>Close</button>
         </footer>
         </div>
     </section>

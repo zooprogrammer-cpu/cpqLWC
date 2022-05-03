@@ -16,7 +16,7 @@ export default class PromotionSearchModal extends LightningElement {
     }
 
     
-    key;
+    key = '';
     selection; 
     @track promos; 
     updateKey(event){
