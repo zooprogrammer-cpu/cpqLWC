@@ -1,5 +1,5 @@
 import { LightningElement, track, wire } from 'lwc';
-import getPromotions from '@salesforce/apex/PromotionController.getPromotions';
+import getPromotions from '@salesforce/apex/QuoteSummaryController.getAllActivePromotions';
 export default class PromotionSearchModal extends LightningElement {
     closeHandler(){ 
         const myEvent = new CustomEvent('close',{
@@ -24,7 +24,7 @@ export default class PromotionSearchModal extends LightningElement {
     }
 
     cols= [
-        {label:'Name', fieldName:'Name' , type: 'text' },
+        {label:'Description', fieldName:'Description' , type: 'text' },
         {label:'Start Date', fieldName:'Start_Date__c' , type: 'date' },
         {label:'End Date', fieldName:'End_Date__c' , type: 'date' }
     ]
@@ -52,9 +52,5 @@ export default class PromotionSearchModal extends LightningElement {
             .map((element) => element.label);
         this.selection = checked.join(',');         
     }
-    
-    
-    
-
 
 }

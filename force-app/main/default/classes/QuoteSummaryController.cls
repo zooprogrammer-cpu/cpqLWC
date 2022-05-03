@@ -26,4 +26,11 @@ public with sharing class QuoteSummaryController {
       
     // }
 
+    //Start: Get all active Promotions
+    @AuraEnabled(cacheable=true)
+    public static List<Promotion__c> getAllActivePromotions(string searchkey){
+        return [SELECT Id,Name,Status__c,Description__c,Start_Date__c, End_Date__c FROM Promotion__c WHERE Name LIKE : '%' + searchkey + '%' AND Status__c = 'ACTIVE'];
+    }
+    //End: Get all active Promotions
+
 }
