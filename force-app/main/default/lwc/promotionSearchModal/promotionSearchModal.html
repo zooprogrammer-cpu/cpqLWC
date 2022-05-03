@@ -14,11 +14,26 @@
             <!-- <lightning-card title = "Search Promotions"> -->
                 <lightning-layout multiple-rows="true" vertical-align="end">
                     <lightning-layout-item size="4" padding="around-small">
-                        <lightning-input type="text" label="Search for Promotion" value={key} onchange={updateKey}></lightning-input> 
+                        <lightning-input 
+                        type="search" 
+                        label="Search for Promotion"
+                        class="slds-var-m-bottom_small" 
+                        value={searchKey} 
+                        onchange={handleKeyChange}
+                        ></lightning-input> 
                     </lightning-layout-item>
-                    <lightning-layout-item size="12" padding="around-small">
+                    <!-- <lightning-layout-item size="12" padding="around-small">
                         <lightning-datatable key-field = "id" data={promos} columns={cols}></lightning-datatable>
-                    </lightning-layout-item>
+                    </lightning-layout-item> -->
+                    <lightning-layout-item size="12" padding="around-small">
+                        <template if:true={wiredPromos.data}>
+                            <template for:each={wiredPromos.data} for:item="Promotion__c">
+                                <p key={Promotion__c.Id}>{Promotion__c.Description__c}</p>
+                            </template>
+                        </template>
+                    </lightning-layout-item>    
+
+                    
                 </lightning-layout>
                 <!-- <button class="slds-button slds-button_brand" onclick={closeHandler}>Ok</button> -->
             <!-- </lightning-card> -->
