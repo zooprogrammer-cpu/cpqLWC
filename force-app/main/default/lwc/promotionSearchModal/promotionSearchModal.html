@@ -2,42 +2,62 @@
     <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open slds-modal_small" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1">
         <div class="slds-modal__container">
         <header class="slds-modal__header">
-            <!-- CLose "X" Button -->
+            <!-- Close "X" Button -->
             <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
                 <lightning-icon onclick={closeHandler} icon-name="utility:close" variant="inverse" alternative-text="close" title="Close">
                 </lightning-icon>
-              </button>
+            </button>
+            <!-- Close "X" Button -->
             <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Available Promotions</h2>
         </header>
         <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+            <lightning-layout multiple-rows="true" vertical-align="end">
+                <lightning-layout-item size="4" padding="around-small">
+                    <!-- Search Box -->
+                    <lightning-input 
+                    type="search" 
+                    label="Search for Promotion" 
+                    value={searchKey}
+                    class="slds-var-m-bottom_small"  
+                    onchange={handleKeyChange}>
+                    </lightning-input>
+                    <!-- Search Box --> 
+                </lightning-layout-item>
+            </lightning-layout>
 
-            <!-- <lightning-card title = "Search Promotions"> -->
-                <lightning-layout multiple-rows="true" vertical-align="end">
-                    <lightning-layout-item size="4" padding="around-small">
-                        <lightning-input 
-                        type="search" 
-                        label="Search for Promotion"
-                        class="slds-var-m-bottom_small" 
-                        value={searchKey} 
-                        onchange={handleKeyChange}
-                        ></lightning-input> 
-                    </lightning-layout-item>
-                    <!-- <lightning-layout-item size="12" padding="around-small">
-                        <lightning-datatable key-field = "id" data={promos} columns={cols}></lightning-datatable>
-                    </lightning-layout-item> -->
-                    <lightning-layout-item size="12" padding="around-small">
-                        <template if:true={wiredPromos.data}>
-                            <template for:each={wiredPromos.data} for:item="Promotion__c">
-                                <p key={Promotion__c.Id}>{Promotion__c.Description__c}</p>
+            <lightning-card>
+                <template if:true ={visiblePromos}>
+                    <lightning-layout class="slds-var-m-around_medium">
+                        <lightning-layout-item>
+                            <template for:each={visiblePromos} for:item ="Promotion__c">
+                                <c-promo-search-item
+                                    class="slds-show slds-is-relative"
+                                    key={Promotion__c.Id}
+                                    promo={Promotion__c}
+                                    onselect={handleSelect}
+                                ></c-promo-search-item>
                             </template>
-                        </template>
-                    </lightning-layout-item>    
-
-                    
-                </lightning-layout>
-                <!-- <button class="slds-button slds-button_brand" onclick={closeHandler}>Ok</button> -->
-            <!-- </lightning-card> -->
+                        </lightning-layout-item>
+                        <lightning-layout-item class="slds-var-m-left_medium">
+                            <template if:true={selectedPromo}>
+                                <span class="slds-badge">{selectedPromo.Status__c}</span>
+                                <p class="description">{selectedPromo.Description__c}</p>
+                                <p>{selectedPromo.Comment__c}</p>
+                                <p><strong>Start Date: </strong>{selectedPromo.Start_Date__c}</p>
+                                <p><strong>End Date: </strong>{selectedPromo.End_Date__c}</p>
+                            </template>
+                            <template if:false={selectedPromo}>
+                                <div class="slds-text-heading_small">Select a Promotion</div>
+                            </template>
+                        </lightning-layout-item>
+                    </lightning-layout>
+                </template>
+                <div slot="footer" class="slds-var-m-horizontal_medium">
+                    <c-promotion-search-pagination records={wiredPromos.data} onupdate={updatePromoHandler}></c-promotion-search-pagination>
+                </div>
+            </lightning-card>          
         </div>
+        
         <footer class="slds-modal__footer" onclick={footerHandler}>
             <button class="slds-button slds-button_brand" onclick={closeHandler}>Close</button>
         </footer>
