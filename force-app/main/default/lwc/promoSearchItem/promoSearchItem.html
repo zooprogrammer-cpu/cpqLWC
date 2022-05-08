@@ -2,9 +2,26 @@
     <a href="#" onclick={handleClick}>
         <lightning-layout vertical-align = "center">
             <lightning-layout-item padding="around-small">
-                <div class="slds-visual-picker slds-visual-picker_medium">
-                    <p>{promo.Description__c}</p>
+                
+                <div class="slds-form-element__control">
+                    <div class="slds-visual-picker slds-visual-picker_medium">
+                      <input type="radio" id="visual-picker-98" value="visual-picker-98" name="example-unique-name-38" />
+                      <label for="visual-picker-98">
+                        <span class="slds-visual-picker__figure slds-visual-picker__text slds-align_absolute-center">
+                          <span>
+                            <span class="slds-text-heading_small">{promo.Description__c}</span>
+                            <span class="slds-text-title">USD/user/month *</span>
+                          </span>
+                        </span>
+                        <span class="slds-icon_container slds-visual-picker__text-check">
+                          <svg class="slds-icon slds-icon-text-check slds-icon_x-small" aria-hidden="true">
+                            <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#check"></use>
+                          </svg>
+                        </span>
+                      </label>
+                    </div>
                 </div>
+
               
             </lightning-layout-item>
         </lightning-layout>
