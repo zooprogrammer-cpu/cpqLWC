@@ -5,15 +5,24 @@
               <fieldset class="slds-form-element">
                 <div class="slds-form-element__control">
                   <div class="slds-visual-picker slds-visual-picker_vertical">
-                    <input type="radio" 
-                    id="visual-picker-98" 
-                    value="visual-picker-98"
-                    name="example-unique-name-38" />
-                    <label for="visual-picker-98">
-                      <span class="slds-visual-picker__figure slds-visual-picker__text slds-align_absolute-center">
+                    <input
+                    type="radio"
+                    id={promo.Id} 
+                    value={promo.Id}
+                    name={promo.Id}
+                    onclick ={handleClick}
+                    ></input> 
+                    
+                    <label for={promo.Id}>
+                      <span 
+                        class="
+                          slds-visual-picker__figure slds-visual-picker__text 
+                          slds-align_absolute-center
+                        "
+                        >
                         <span>
-                          <span class="slds-text-heading_medium slds-m-bottom_x-small">{promo.Description__c}</span>
-                          <span class="slds-text-title">Some optional item description to help the user better understand what this option is about.</span>
+                          <span class="slds-text-heading_medium">{promo.Description__c}</span>
+                          <span class="slds-text-title"></span>
                         </span>
                       </span>
                       <span class="slds-icon_container slds-visual-picker__text-check">
