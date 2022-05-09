@@ -52,6 +52,10 @@
                         </lightning-layout-item>
                     </lightning-layout>
                 </template>
+                <template if:false ={visiblePromos}>
+                    No Promos available
+                </template>    
+
                 <div slot="footer" class="slds-var-m-horizontal_medium">
                     <c-promotion-search-pagination records={wiredPromos.data} onupdate={updatePromoHandler}></c-promotion-search-pagination>
                 </div>
