@@ -7,11 +7,14 @@ export default class PromotionSearchModal extends LightningElement {
 
     searchKey='';
     selectedPromo;
-    visiblePromos;
-    searchKeyIsNull; 
+    visiblePromos 
     
     @wire(getAllActivePromotions,{searchkey:'$searchKey'}) 
     wiredPromos;
+
+    handleClick(){
+        this.selectedPromo = false;
+    }
 
     handleKeyChange(event){
         window.clearTimeout(this.delayTimeout)
@@ -19,8 +22,6 @@ export default class PromotionSearchModal extends LightningElement {
         this.delayTimeout = setTimeout(()=>{
             this.searchKey = searchKey; 
         },DELAY);
-
-        
     }
 
     handleSelect(event){
@@ -46,12 +47,10 @@ export default class PromotionSearchModal extends LightningElement {
     updatePromoHandler(event){
         this.visiblePromos=[...event.detail.records]
         console.log(event.detail.records)
-        console.log(this.searchKey.length)
-        if(this.searchKey.length<1){
-            this.searchKeyIsNull = true; 
-            console.log(this.searchKeyIsNull)
-            this.selectedPromo=[]
-        }
+    }
+
+    handleClearSelection(){
+        selectedPromo =[]
     }
    
 }

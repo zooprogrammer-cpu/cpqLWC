@@ -8,7 +8,7 @@
                 </lightning-icon>
             </button>
             <!-- Close "X" Button -->
-            <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Available Promotions</h2>
+            <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Promotions Search</h2>
         </header>
         <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
             <lightning-layout multiple-rows="true" vertical-align="end">
@@ -19,13 +19,14 @@
                     label="Search for Promotion" 
                     value={searchKey}
                     class="slds-var-m-bottom_small"  
-                    onchange={handleKeyChange}>
+                    onchange={handleKeyChange}
+                    onclick={handleClick}>
                     </lightning-input>
                     <!-- Search Box --> 
                 </lightning-layout-item>
             </lightning-layout>
 
-            <lightning-card>
+            <lightning-card title="Select a Promotion">
                 <template if:true ={visiblePromos}>
                     <lightning-layout class="slds-var-m-around_medium">
                         <lightning-layout-item>
@@ -47,15 +48,11 @@
                                 <p><strong>End Date: </strong>{selectedPromo.End_Date__c}</p>
                             </template>
                             <template if:false={selectedPromo}>
-                                <div class="slds-text-heading_small">Select a Promotion</div>
+                                <div class="slds-text-heading_small"></div>
                             </template>
                         </lightning-layout-item>
                     </lightning-layout>
                 </template>
-                <template if:false ={visiblePromos}>
-                    No Promos available
-                </template>    
-
                 <div slot="footer" class="slds-var-m-horizontal_medium">
                     <c-promotion-search-pagination records={wiredPromos.data} onupdate={updatePromoHandler}></c-promotion-search-pagination>
                 </div>
