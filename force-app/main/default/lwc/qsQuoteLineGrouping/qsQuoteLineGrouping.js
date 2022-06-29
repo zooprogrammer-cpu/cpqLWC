@@ -39,7 +39,8 @@ export default class QsQuoteLineGrouping extends LightningElement {
 // create a unique set of plan summary values quote lines required by each top level product
     createGroups(topLevelProductId){
         this.quoteLines.forEach(line=>{
-                if(line.SBQQ__RequiredBy__c === topLevelProductId && line.Plan_Summary__c !== undefined){
+                // if(line.SBQQ__RequiredBy__c === topLevelProductId && line.Plan_Summary__c !== undefined){
+                if(line.SBQQ__RequiredBy__c === topLevelProductId || line.Id === topLevelProductId ){
                     this.planSummaryValuesSet.add(line.Plan_Summary__c);
                 }
         })
@@ -50,6 +51,7 @@ export default class QsQuoteLineGrouping extends LightningElement {
             this.planSummaryArray.push({
                 planSummary : value,                
                 children : this.filterChildren(value,topLevelProductId),
+                //grandChildren : this.filterGrandChildren(children.id),
                 //installSubTotal : this.installSubTotal,
                 //monitoringSubTotal : this.monitoringSubTotal,
                 netSubTotal : this.netSubTotal,
@@ -65,7 +67,37 @@ export default class QsQuoteLineGrouping extends LightningElement {
     filterChildren(value,topLevelProductId){
         let matchingValues = [];
         this.quoteLines.forEach(line=>{
-            if(line.Plan_Summary__c == value && line.SBQQ__RequiredBy__c === topLevelProductId ){
+            if(line.Plan_Summary__c == value && (line.SBQQ__RequiredBy__c === topLevelProductId || line.Id === topLevelProductId)){
+                let obj ={
+                    id : line.Id,
+                    qty : line.SBQQ__Quantity__c,
+                    name : line.SBQQ__ProductName__c,
+                    netTotal  : line.SBQQ__NetTotal__c,
+                    //install : line.Install__c,
+                    //monitoring : line.Monitoring__c,
+                    title : line.Plan_Summary_Title__c,
+                    parent: line.RequiredBy_Text__c,
+                    grandChildren : this.filterGrandChildren(line.Id) 
+                }
+                matchingValues.push(obj);
+            }
+        })
+        console.log(`matchingValues:`, matchingValues)
+        //console.log(matchingValues)
+        //this.sumInstallSubTotal(matchingValues)
+        //this.sumMonitoringSubTotal(matchingValues)
+        this.sumNetSubTotal(matchingValues)
+        this.retrieveTitle(matchingValues)
+        this.retrieveParent(matchingValues)
+
+        return matchingValues;
+    }
+
+    // filter grandchildren products that are required by the children product    
+    filterGrandChildren(childProductId){
+        let matchingValues = [];
+        this.quoteLines.forEach(line=>{
+            if(line.SBQQ__RequiredBy__c === childProductId){
                 let obj ={
                     id : line.Id,
                     qty : line.SBQQ__Quantity__c,
@@ -83,9 +115,9 @@ export default class QsQuoteLineGrouping extends LightningElement {
         console.log(matchingValues)
         //this.sumInstallSubTotal(matchingValues)
         //this.sumMonitoringSubTotal(matchingValues)
-        this.sumNetSubTotal(matchingValues)
-        this.retrieveTitle(matchingValues)
-        this.retrieveParent(matchingValues)
+        // this.sumNetSubTotal(matchingValues)
+        // this.retrieveTitle(matchingValues)
+        // this.retrieveParent(matchingValues)
 
         return matchingValues;
     }
