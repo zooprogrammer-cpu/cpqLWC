@@ -6,10 +6,10 @@ export default class QsQuoteLineGrouping extends LightningElement {
     // @api showInstall;
     // @api showMonthly;
     // @api installmentValue;
-    topLevelBundles = [];
-    planSummaryValuesSet = new Set();
+    @track topLevelBundles = [];
+    @track planSummaryValuesSet = new Set();
     @track planSummaryArray = [];
-    headings = ["Product Name","Qty","Net Price", "Net Total"]
+    headings = ["Product Name & Qty", "Net Total"]
 
     
     connectedCallback(){
@@ -64,7 +64,7 @@ export default class QsQuoteLineGrouping extends LightningElement {
         console.table(JSON.parse(JSON.stringify(this.planSummaryArray)))
     }
 
-// filter children products that are required by the tope level product and for specfic plan summary    
+// filter children products that are required by the top level product and for specfic plan summary    
     filterChildren(value,topLevelProductId){
         let matchingValues = [];
         this.quoteLines.forEach(line=>{
@@ -78,7 +78,7 @@ export default class QsQuoteLineGrouping extends LightningElement {
                     //monitoring : line.Monitoring__c,
                     title : line.Plan_Summary_Title__c,
                     parent: line.RequiredBy_Text__c,
-                    grandChildren : this.filterGrandChildren(line.Id) 
+                    grandChildren : this.filterGrandChildren(line.Id,topLevelProductId) 
                 }
                 matchingValues.push(obj);
             }
@@ -95,10 +95,10 @@ export default class QsQuoteLineGrouping extends LightningElement {
     }
 
     // filter grandchildren products that are required by the children product    
-    filterGrandChildren(childProductId){
+    filterGrandChildren(childProductId,topLevelProductId){
         let matchingValues = [];
         this.quoteLines.forEach(line=>{
-            if(line.SBQQ__RequiredBy__c === childProductId){
+            if(line.SBQQ__RequiredBy__c === childProductId && line.SBQQ__RequiredBy__c !== topLevelProductId){
                 let obj ={
                     id : line.Id,
                     qty : line.SBQQ__Quantity__c,
