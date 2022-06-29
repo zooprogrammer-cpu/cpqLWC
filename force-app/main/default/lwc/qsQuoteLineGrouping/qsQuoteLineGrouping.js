@@ -61,6 +61,7 @@ export default class QsQuoteLineGrouping extends LightningElement {
             });
         })
         console.log(`planSummaryArray`,this.planSummaryArray);
+        console.table(JSON.parse(JSON.stringify(this.planSummaryArray)))
     }
 
 // filter children products that are required by the tope level product and for specfic plan summary    
