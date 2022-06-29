@@ -11,7 +11,18 @@ public with sharing class QuoteSummaryController {
     @AuraEnabled(cacheable=true)
     
     public static List<SBQQ__QuoteLine__c> getQuoteLines(String quoteId){ 
-        return [SELECT Id, SBQQ__ProductName__c,SBQQ__Description__c,SBQQ__Quantity__c,SBQQ__NetPrice__c,SBQQ__NetTotal__c,SBQQ__ProductFamily__c FROM SBQQ__QuoteLine__c WHERE SBQQ__Quote__c=:quoteId];
+        return [SELECT Id, 
+        SBQQ__ProductName__c,
+        SBQQ__Description__c,
+        SBQQ__Quantity__c,
+        SBQQ__NetPrice__c,
+        SBQQ__NetTotal__c,
+        SBQQ__ProductFamily__c,
+        Plan_Summary__c,
+        Plan_Summary_Title__c,
+        RequiredBy_Text__c,
+        SBQQ__RequiredBy__c 
+        FROM SBQQ__QuoteLine__c WHERE SBQQ__Quote__c=:quoteId];
     }
 
     //upsertQSPQuoteLines

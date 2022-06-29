@@ -1,0 +1,9 @@
+<aura:component implements = "flexipage:availableForAllPageTypes,force:lightningQuickActionWithoutHeader,force:hasRecordId">
+    
+    <lightning:card title="Aura Parent Quote Summary Container for New Quote Smmmary Page">
+        <div>
+            <c:newQuoteSummaryPage/>  
+        </div> 
+    </lightning:card>
+ 
+</aura:component>

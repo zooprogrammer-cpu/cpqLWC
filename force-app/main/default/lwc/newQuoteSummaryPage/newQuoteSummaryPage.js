@@ -1,62 +1,86 @@
 import { LightningElement,api,wire,track } from 'lwc';
 import {CurrentPageReference} from 'lightning/navigation';
 import { NavigationMixin } from 'lightning/navigation';
+import { refreshApex } from '@salesforce/apex';
+import { updateRecord } from 'lightning/uiRecordApi';
+
 import getQuoteLines from '@salesforce/apex/QuoteSummaryController.getQuoteLines';
 import getQuote from '@salesforce/apex/QuoteSummaryController.getQuote';
-//import upsertQSPQuoteLine from '@salesforce/apex/QuoteSummaryController.upsertQSPQuoteLine';
 export default class NewQuoteSummaryPage extends NavigationMixin(LightningElement) {
     @track quoteLines;
+    @track error;
+    
     @track columns =[
         {label:'Product Name', fieldName:'SBQQ__ProductName__c',type: 'text' },
         {label:'Product Family', fieldName:'SBQQ__ProductFamily__c',type: 'text' },
         {label:'Qty', fieldName: 'SBQQ__Quantity__c',type: 'text'},
         {label:'Net Unit Price', fieldName: 'SBQQ__NetPrice__c',type: 'currency'},
         {label:'Net Total Price', fieldName: 'SBQQ__NetTotal__c',type: 'currency'},
-
-
     ];
-      //Capture quoteId
-      @wire(CurrentPageReference)
-      pageRef
+    
+    //Capture quoteId
+    @wire(CurrentPageReference)
+    pageRef
   
-      get PageReference(){
-          return this.pageRef ? JSON.stringify(this.pageRef,null,2):''
-      }
+    //   get PageReference(){
+    //       return this.pageRef ? JSON.stringify(this.pageRef,null,2):''
+    //   }
   
-      get quoteIden(){
-          return (this.pageRef.state.c__quoteId)
-      }
+    get quoteIden(){
+        return (this.pageRef.state.c__quoteId)
+    }
 
     //Capture Quote Lines 
     @wire(getQuoteLines,{quoteId:'$quoteIden'})
-    quoteLinesHandler({data,error}){
-        if(data){
-            console.log(`quoteLinesHandler data:`,data)
-            this.quoteLines = data; 
-            
+    quoteLinesHandler(result){
+        this.quoteLinesResult = result; 
+        if(result.data){
+            console.log(`quoteLinesHandler data:`,result.data)
+            this.quoteLines = result.data; 
+            refreshApex(this.quoteLinesResult);
         }
-        if(error){
-            console.error(error)
+        if(result.error){
+            console.error(result.error)
         }
     }
 
     //Quote Lines Table
     headings = ["Product Name", "Product Family", "Quantity", "Net Unit Price","Net Total Price"]
 
-    get totalAmount(){
-        return this.quoteLines.reduce((total,value)=>{
+    
+    //get the hardware quotelines
+
+    get hardwareQuoteLines(){
+        return this.quoteLines.filter((quoteLine)=>quoteLine.SBQQ__ProductFamily__c==="Hardware")
+    }
+
+    get hardwareTotalAmount(){
+        return this.hardwareQuoteLines.reduce((total,value)=>{
             return total = total + value.SBQQ__NetTotal__c
         },0)
         
     }
     
+     //get the software quotelines
+
+    get softwareQuoteLines(){
+        return this.quoteLines.filter((quoteLine)=>quoteLine.SBQQ__ProductFamily__c==="Software")
+    }
+
+    get softwareTotalAmount(){
+        return this.softwareQuoteLines.reduce((total,value)=>{
+            return total = total + value.SBQQ__NetTotal__c
+        },0)
+        
+    }
+
     //Capture Quote Name
     @wire (getQuote,{quoteId:'$quoteIden'})
     quoteHandler({data,error}){
         if(data){
             console.log(data)
             console.log(data.Name)
-            this.quoteNames = data;
+            this.quoteData = data;
         }
         if(error){
             console.error(error)
@@ -103,6 +127,13 @@ export default class NewQuoteSummaryPage extends NavigationMixin(LightningElemen
         })
     }
 
+    // refreshHandler(){
+    //     console.log('Refreshing Quote Lines');
+    //     return refreshApex(this.quoteLinesResult);
+
+    // }
+    
+
     // insertQSPQuoteLine(){
     //     console.log('Adding QSP Quote Line')
     //     upsertQSPQuoteLine({quoteId:this.quoteId,
@@ -110,6 +141,4 @@ export default class NewQuoteSummaryPage extends NavigationMixin(LightningElemen
     //     })
     // }
 
-
-    
 }
