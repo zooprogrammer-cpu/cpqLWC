@@ -21,8 +21,11 @@ public with sharing class QuoteSummaryController {
         Plan_Summary__c,
         Plan_Summary_Title__c,
         RequiredBy_Text__c,
-        SBQQ__RequiredBy__c 
-        FROM SBQQ__QuoteLine__c WHERE SBQQ__Quote__c=:quoteId];
+        SBQQ__RequiredBy__c,
+        SBQQ__ProductOption__c 
+        FROM SBQQ__QuoteLine__c WHERE SBQQ__Quote__c=:quoteId
+        ORDER BY Plan_Summary__c, SBQQ__Number__c ASC NULLS FIRST
+        ];
     }
 
     //upsertQSPQuoteLines

@@ -9,6 +9,10 @@ import getQuote from '@salesforce/apex/QuoteSummaryController.getQuote';
 export default class NewQuoteSummaryPage extends NavigationMixin(LightningElement) {
     @track quoteLines;
     @track error;
+    topLevelBundles =[];
+    planSummaryValuesSet = new Set();
+    @track planSummaryArray = [];
+    parsedQuoteLines =[];
     
     @track columns =[
         {label:'Product Name', fieldName:'SBQQ__ProductName__c',type: 'text' },
@@ -22,58 +26,9 @@ export default class NewQuoteSummaryPage extends NavigationMixin(LightningElemen
     @wire(CurrentPageReference)
     pageRef
   
-    //   get PageReference(){
-    //       return this.pageRef ? JSON.stringify(this.pageRef,null,2):''
-    //   }
-  
     get quoteIden(){
         return (this.pageRef.state.c__quoteId)
     }
-
-    //Capture Quote Lines 
-    @wire(getQuoteLines,{quoteId:'$quoteIden'})
-    quoteLinesHandler(result){
-        this.quoteLinesResult = result; 
-        if(result.data){
-            console.log(`quoteLinesHandler data:`,result.data)
-            this.quoteLines = result.data; 
-            refreshApex(this.quoteLinesResult);
-        }
-        if(result.error){
-            console.error(result.error)
-        }
-    }
-
-    //Quote Lines Table
-    headings = ["Product Name", "Product Family", "Quantity", "Net Unit Price","Net Total Price"]
-
-    
-    //get the hardware quotelines
-
-    get hardwareQuoteLines(){
-        return this.quoteLines.filter((quoteLine)=>quoteLine.SBQQ__ProductFamily__c==="Hardware")
-    }
-
-    get hardwareTotalAmount(){
-        return this.hardwareQuoteLines.reduce((total,value)=>{
-            return total = total + value.SBQQ__NetTotal__c
-        },0)
-        
-    }
-    
-     //get the software quotelines
-
-    get softwareQuoteLines(){
-        return this.quoteLines.filter((quoteLine)=>quoteLine.SBQQ__ProductFamily__c==="Software")
-    }
-
-    get softwareTotalAmount(){
-        return this.softwareQuoteLines.reduce((total,value)=>{
-            return total = total + value.SBQQ__NetTotal__c
-        },0)
-        
-    }
-
     //Capture Quote Name
     @wire (getQuote,{quoteId:'$quoteIden'})
     quoteHandler({data,error}){
@@ -86,6 +41,31 @@ export default class NewQuoteSummaryPage extends NavigationMixin(LightningElemen
             console.error(error)
         }
     }
+
+    //Capture Quote Lines 
+    @wire(getQuoteLines,{quoteId:'$quoteIden'})
+    quoteLinesHandler(result){
+        this.quoteLinesResult = result; 
+        if(result.data){
+            console.log(`quoteLinesHandler data:`,result.data)
+            this.quoteLines = result.data; 
+            refreshApex(this.quoteLinesResult);
+            this.parsedQuoteLines = JSON.parse(JSON.stringify(this.quoteLines))
+            console.table(`parsedQuoteLines:`,this.parsedQuoteLines)
+
+        }
+        if(result.error){
+            console.error(result.error)
+        }
+
+    }
+
+
+    //Quote Lines Table
+    headings = ["Product Name", "Product Family", "Quantity", "Net Unit Price","Net Total Price"]
+
+
+ 
   
     /* Button to Quote Detail Page */
     handleReturntoQuoteDetail(){
@@ -115,9 +95,6 @@ export default class NewQuoteSummaryPage extends NavigationMixin(LightningElemen
         this[NavigationMixin.Navigate]({ 
             type:'standard__webPage',
             attributes:{ 
-                //recordId:this.pageRef.state.c__quoteId,
-                //objectApiName:'SBQQ__Quote__c',
-                //actionName:'view',
                 recordId:this.pageRef.state.c__quoteId,
                 url:'/apex/sbqq__sb?scontrolCaching=1&id='+ this.pageRef.state.c__quoteId + '#quote/le?qId=' + this.pageRef.state.c__quoteId
             }
@@ -127,18 +104,5 @@ export default class NewQuoteSummaryPage extends NavigationMixin(LightningElemen
         })
     }
 
-    // refreshHandler(){
-    //     console.log('Refreshing Quote Lines');
-    //     return refreshApex(this.quoteLinesResult);
-
-    // }
-    
-
-    // insertQSPQuoteLine(){
-    //     console.log('Adding QSP Quote Line')
-    //     upsertQSPQuoteLine({quoteId:this.quoteId,
-
-    //     })
-    // }
 
 }
