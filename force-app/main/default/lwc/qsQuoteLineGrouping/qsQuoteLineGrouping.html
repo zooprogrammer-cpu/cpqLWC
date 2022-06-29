@@ -1,43 +1,38 @@
 <template>
-    <lightning-card title="New Quote Summary Page child component">
-       
-        <template if:true={quoteLines}>
-            <table class="slds-table slds-table_cell-buffer slds-table_bordered" aria-label="Example default base table of Opportunities">
-                <thead>
-                    <tr>
-                        <template for:each={headings} for:item="heading">
-                            <th key={headings}>{heading}</th>
-                        </template>
-                    </tr>
-                </thead>
+    <lightning-card>
+        <div class="slds-var-p-around_medium">
+            <table>
                 <tbody>
-                    <template for:each={quoteLines} for:item="data">
-                        <tr key={data.Id}>
-                            <td>{data.SBQQ__ProductName__c} </td>
-                            <td>{data.SBQQ__ProductFamily__c} </td>
-                            <td>{data.SBQQ__Quantity__c}</td>
-                            <td class="rightText"><lightning-formatted-number value={data.SBQQ__NetPrice__c} format-style="currency" currency-code="USD"></lightning-formatted-number></td> 
-                            <td class="rightText"><lightning-formatted-number value={data.SBQQ__NetTotal__c} format-style="currency" currency-code="USD"></lightning-formatted-number></td> 
-                        </tr>
+                    <template if:true={quoteLines}>
+                            <thead>
+                                <tr>
+                                    <template for:each={headings} for:item="heading">
+                                        <th class="slds-text-align_center slds-var-p-around_small" key={headings}>{heading}</th>
+                                    </template>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <template for:each={quoteLines} for:item="data">
+                                    <tr key={data.Id}>
+                                        <td>{data.SBQQ__ProductName__c} </td>
+                                        <td>{data.SBQQ__ProductFamily__c} </td>
+                                        <td>{data.SBQQ__Quantity__c}</td>
+                                        <td class="rightText"><lightning-formatted-number value={data.SBQQ__NetPrice__c} format-style="currency" currency-code="USD"></lightning-formatted-number></td> 
+                                        <td class="rightText"><lightning-formatted-number value={data.SBQQ__NetTotal__c} format-style="currency" currency-code="USD"></lightning-formatted-number></td> 
+                                    </tr>
+                                </template>
+                            </tbody>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><strong>Total Amount:</strong></td>
+                            <td><strong><lightning-formatted-number value={totalAmount} format-style="currency" currency-code="USD"></lightning-formatted-number></strong></td>
                     </template>
                 </tbody>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td><strong>Total Amount:</strong></td>
-                <td><strong><lightning-formatted-number value={totalAmount} format-style="currency" currency-code="USD"></lightning-formatted-number></strong></td>
-                
+              
             </table>
-           
-        </template>
-       
-
-        <div>
-            <template if:true={showModal}>
-                <c-review-quote-payment-l-w-c record-id={quoteIden} onclose={closeHandler}></c-review-quote-payment-l-w-c>
-            </template>
         </div>
-        <!-- Make Payment Modal End -->
-
     </lightning-card>
+    
+   
 </template>

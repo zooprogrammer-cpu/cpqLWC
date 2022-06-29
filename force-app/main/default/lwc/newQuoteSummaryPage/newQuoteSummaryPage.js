@@ -29,18 +29,18 @@ export default class NewQuoteSummaryPage extends NavigationMixin(LightningElemen
     get quoteIden(){
         return (this.pageRef.state.c__quoteId)
     }
-    //Capture Quote Name
-    @wire (getQuote,{quoteId:'$quoteIden'})
-    quoteHandler({data,error}){
-        if(data){
-            console.log(data)
-            console.log(data.Name)
-            this.quoteData = data;
-        }
-        if(error){
-            console.error(error)
-        }
-    }
+       //Capture Quote Name
+       @wire (getQuote,{quoteId:'$quoteIden'})
+       quoteHandler({data,error}){
+           if(data){
+               console.log(data)
+               console.log(data.Name)
+               this.quoteNames = data;
+           }
+           if(error){
+               console.error(error)
+           }
+       }
 
     //Capture Quote Lines 
     @wire(getQuoteLines,{quoteId:'$quoteIden'})

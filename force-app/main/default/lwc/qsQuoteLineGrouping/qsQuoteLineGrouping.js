@@ -50,8 +50,9 @@ export default class QsQuoteLineGrouping extends LightningElement {
             this.planSummaryArray.push({
                 planSummary : value,                
                 children : this.filterChildren(value,topLevelProductId),
-                installSubTotal : this.installSubTotal,
-                monitoringSubTotal : this.monitoringSubTotal,
+                //installSubTotal : this.installSubTotal,
+                //monitoringSubTotal : this.monitoringSubTotal,
+                netSubTotal : this.netSubTotal,
                 subTotalDesc : this.genSubTotalDesc(value),
                 title : this.titleFromChild,
                 parent : this.parentFromChild
@@ -69,8 +70,9 @@ export default class QsQuoteLineGrouping extends LightningElement {
                     id : line.Id,
                     qty : line.SBQQ__Quantity__c,
                     name : line.SBQQ__ProductName__c,
-                    install : line.Install__c,
-                    monitoring : line.Monitoring__c,
+                    netTotal  : line.SBQQ__NetTotal__c,
+                    //install : line.Install__c,
+                    //monitoring : line.Monitoring__c,
                     title : line.Plan_Summary_Title__c,
                     parent: line.RequiredBy_Text__c 
                 }
@@ -79,29 +81,37 @@ export default class QsQuoteLineGrouping extends LightningElement {
         })
         console.log(`matchingValues:`)
         console.log(matchingValues)
-        this.sumInstallSubTotal(matchingValues)
-        this.sumMonitoringSubTotal(matchingValues)
+        //this.sumInstallSubTotal(matchingValues)
+        //this.sumMonitoringSubTotal(matchingValues)
+        this.sumNetSubTotal(matchingValues)
         this.retrieveTitle(matchingValues)
         this.retrieveParent(matchingValues)
 
         return matchingValues;
     }
 
-// calculate Install SubTotal    
-    sumInstallSubTotal(matchingValues){
-        this.installSubTotal = matchingValues.reduce((total,value)=>{
-            return total = total + value.install
+//calculate Monitoring SubTotal    
+    sumNetSubTotal(matchingValues){
+        this.netSubTotal = matchingValues.reduce((total,value)=>{
+            return total = total + value.netTotal
         },0)
-        console.log(`installSubTotal:`,this.installSubTotal)
+        console.log(`netSubTotal:`,this.netSubTotal)
     }
+// calculate Install SubTotal    
+    // sumInstallSubTotal(matchingValues){
+    //     this.installSubTotal = matchingValues.reduce((total,value)=>{
+    //         return total = total + value.install
+    //     },0)
+    //     console.log(`installSubTotal:`,this.installSubTotal)
+    // }
 
 // calculate Monitoring SubTotal    
-    sumMonitoringSubTotal(matchingValues){
-        this.monitoringSubTotal = matchingValues.reduce((total,value)=>{
-            return total = total + value.monitoring
-        },0)
-        console.log(`monitoringSubTotal:`,this.monitoringSubTotal)
-    }
+    // sumMonitoringSubTotal(matchingValues){
+    //     this.monitoringSubTotal = matchingValues.reduce((total,value)=>{
+    //         return total = total + value.monitoring
+    //     },0)
+    //     console.log(`monitoringSubTotal:`,this.monitoringSubTotal)
+    // }
 
 // retreive the plan summary title from child products to be displayed per group    
     retrieveTitle(matchingValues){
