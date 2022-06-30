@@ -12,7 +12,18 @@
                 Quote Name:{quoteNames.Name}
             </template>
         </div>
-  
+        <div>
+            <template if:true={quoteLines}>
+                    <c-qs-quote-line-grouping
+                    quote-lines={quoteLines}
+                    show-install={showInstall}
+                    show-monthly={showMonthly}
+                    installment-value={installmentsValue}
+                    >
+                </c-qs-quote-line-grouping>
+            </template> 
+        </div>
+
         <!-- Make Payment Modal Start -->
         <div>
             <template if:true={showModal}>
@@ -21,19 +32,6 @@
         </div>
         <!-- Make Payment Modal End -->
 
-        <template if:true={quoteLines}>
-            <tr data-name="top-bundle">
-                <td class="noPadding" colspan="4">
-                    <c-qs-quote-line-grouping
-                        quote-lines={quoteLines}
-                        show-install={showInstall}
-                        show-monthly={showMonthly}
-                        installment-value={installmentsValue}
-                        >
-                    </c-qs-quote-line-grouping>
-                </td>
-            </tr>
-        </template>  
 
 
 
