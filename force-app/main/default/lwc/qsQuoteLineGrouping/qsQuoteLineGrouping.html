@@ -1,5 +1,5 @@
 <template>
-            <table class="fixed" width="100%" >
+            <table class="slds-var-p-around_medium" width="100%"  >
                     <template if:true={quoteLines}>
                         <!-- <thead>
                             <tr>
@@ -14,8 +14,8 @@
                                     <td class="slds-var-p-around_x-small" colspan="4"><strong><lightning-formatted-text value={item.title}></lightning-formatted-text></strong></td>
                                 </tr>
                                 <template for:each={item.children} for:item="child">
-                                    <tr key={child.id}>
-                                        <td class="slds-var-p-around_x-small" colspan="4"><lightning-formatted-number value={child.qty}></lightning-formatted-number>&nbsp;<lightning-formatted-number></lightning-formatted-number><lightning-formatted-text value={child.name}></lightning-formatted-text></td>
+                                    <tr class={child.customStyle} key={child.id}>
+                                        <td colspan="4"><lightning-formatted-number value={child.qty}></lightning-formatted-number>&nbsp;<lightning-formatted-text value={child.name}></lightning-formatted-text></td>
                                         <td class="slds-text-align_right slds-var-p-around_x-small"><lightning-formatted-number  value={child.netTotal} format-style="currency" currency-code="USD"></lightning-formatted-number></td>
                                     </tr>
                                     <template for:each={child.grandChildren} for:item="grandChild">
@@ -29,7 +29,7 @@
                                 
                                 
                                 <tr key={item.id}>
-                                    <td class="slds-text-align_right slds-var-p-around_small adtBlue"><strong><lightning-formatted-text value={item.subTotalDesc}></lightning-formatted-text>&nbsp;Subtotal:</strong></td>
+                                    <td class="slds-text-align_right slds-var-p-around_small adtBlue"><strong><lightning-formatted-text value={item.subTotalDesc}></lightning-formatted-text></strong></td>
                                     <!-- <template if:true={showInstall}> -->
                                         <!-- <td>&nbsp;</td> -->
                                         <td class="slds-text-align_right slds-var-p-around_small adtBlue"><strong><lightning-formatted-number value={item.installSubTotal} format-style="currency" currency-code="USD"></lightning-formatted-number></strong></td>

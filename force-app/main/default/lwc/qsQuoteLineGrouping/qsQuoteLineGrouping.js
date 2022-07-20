@@ -55,8 +55,8 @@ export default class QsQuoteLineGrouping extends LightningElement {
                 //installSubTotal : this.installSubTotal,
                 //monitoringSubTotal : this.monitoringSubTotal,
                 netSubTotal : this.netSubTotal,
-                subTotalDesc : this.genSubTotalDesc(value),
-                title : this.titleFromChild,
+                subTotalDesc : value === "0-None" ? null : this.genSubTotalDesc(value) + " Subtotal",
+                title : value === "0-None" ? null : this.titleFromChild,
                 parent : this.parentFromChild
             });
         })
@@ -71,13 +71,14 @@ export default class QsQuoteLineGrouping extends LightningElement {
             if(line.Plan_Summary__c == value && (line.SBQQ__RequiredBy__c === topLevelProductId || line.Id === topLevelProductId)){
                 let obj ={
                     id : line.Id,
-                    qty : line.SBQQ__Quantity__c,
+                    qty : line.Id === topLevelProductId ? null : line.SBQQ__Quantity__c,
                     name : line.SBQQ__ProductName__c,
                     netTotal  : line.SBQQ__NetTotal__c,
                     //install : line.Install__c,
                     //monitoring : line.Monitoring__c,
                     title : line.Plan_Summary_Title__c,
-                    parent: line.RequiredBy_Text__c,
+                    parent : line.RequiredBy_Text__c,
+                    customStyle : line.Id === topLevelProductId ? "slds-theme_shade slds-text-heading_small slds-var-p-around_x-small": "slds-text-color_default slds-var-p-around_x-small",
                     grandChildren : this.filterGrandChildren(line.Id,topLevelProductId) 
                 }
                 matchingValues.push(obj);
@@ -107,7 +108,7 @@ export default class QsQuoteLineGrouping extends LightningElement {
                     //install : line.Install__c,
                     //monitoring : line.Monitoring__c,
                     title : line.Plan_Summary_Title__c,
-                    parent: line.RequiredBy_Text__c 
+                    parent: line.RequiredBy_Text__c
                 }
                 matchingValues.push(obj);
             }
@@ -165,7 +166,7 @@ export default class QsQuoteLineGrouping extends LightningElement {
 // generate Sub-Total description based on the plan summary value per group    
 
     genSubTotalDesc(value){
-        return value.substring(value.indexOf("-") + 1)
+        return (value.substring(value.indexOf("-") + 1))
     }
 
 }
