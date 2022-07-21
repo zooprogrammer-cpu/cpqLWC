@@ -10,6 +10,7 @@ export default class QsQuoteLineGrouping extends LightningElement {
     @track planSummaryValuesSet = new Set();
     @track planSummaryArray = [];
     headings = ["Product Name & Qty", "Net Total"]
+    @api installmentsValue
 
     
     connectedCallback(){
@@ -20,6 +21,14 @@ export default class QsQuoteLineGrouping extends LightningElement {
             console.error(`Unable to create Top Level Groups`, error)
         }
     }
+
+    @api refreshTable(){
+        this.topLevelBundles=[]
+        this.planSummaryValuesSet = new Set()
+        this.planSummaryArray = []
+        this.createTopLevelGroups()
+    }
+
 
 // create top most level groups to be displayed 
 
@@ -76,6 +85,7 @@ export default class QsQuoteLineGrouping extends LightningElement {
                     netTotal  : line.SBQQ__NetTotal__c,
                     //install : line.Install__c,
                     //monitoring : line.Monitoring__c,
+                    monthly : this.calculateMonthly(line.SBQQ__NetTotal__c, this.installmentValue),
                     title : line.Plan_Summary_Title__c,
                     parent : line.RequiredBy_Text__c,
                     customStyle : line.Id === topLevelProductId ? "slds-theme_shade slds-text-heading_small slds-var-p-around_x-small": "slds-text-color_default slds-var-p-around_x-small",
@@ -107,6 +117,7 @@ export default class QsQuoteLineGrouping extends LightningElement {
                     netTotal  : line.SBQQ__NetTotal__c,
                     //install : line.Install__c,
                     //monitoring : line.Monitoring__c,
+                    monthly : this.calculateMonthly(line.SBQQ__NetTotal__c, this.installmentValue),
                     title : line.Plan_Summary_Title__c,
                     parent: line.RequiredBy_Text__c
                 }
@@ -167,6 +178,53 @@ export default class QsQuoteLineGrouping extends LightningElement {
 
     genSubTotalDesc(value){
         return (value.substring(value.indexOf("-") + 1))
+    }
+
+       //Logic to display and divide values in the Monthly Column
+
+   calculateMonthly(install, installmentValue){  
+    if(installmentValue === 'Pay In Full'){
+        this.showInstall = true;
+        this.showMonthly = false;
+        return 0;
+    } else {
+        switch(installmentValue){
+            case '3Pay':{
+                this.showInstall = false;
+                this.showMonthly = true;
+                return (install / 3);
+            }
+            case '12 Months':{
+                this.showInstall = false;
+                this.showMonthly = true;
+                return (install / 12);
+            }
+            case '24 Months':{
+                this.showInstall = false;
+                this.showMonthly = true;
+                return (install / 24);
+            }
+            case '36 Months':{
+                this.showInstall = false;
+                this.showMonthly = true;
+                return (install / 36);
+            }
+            case '60 Months':{
+                this.showInstall = false;
+                this.showMonthly = true;
+                return (install / 60);
+            }
+        }
+    }        
+}
+
+//Installments value selection refresh Table
+
+    @api refreshChildLines(installmentValue){
+        console.log('>>>refreshChildLines()');
+        console.log('installmentValue after refreshChildLines: ' + installmentValue);
+        this.installmentValue = installmentValue;
+        this.refreshTable(); 
     }
 
 }

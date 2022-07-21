@@ -13,6 +13,7 @@ export default class NewQuoteSummaryPage extends NavigationMixin(LightningElemen
     planSummaryValuesSet = new Set();
     @track planSummaryArray = [];
     parsedQuoteLines =[];
+    installmentsValue = '';
     
     @track columns =[
         {label:'Product Name', fieldName:'SBQQ__ProductName__c',type: 'text' },
@@ -101,6 +102,28 @@ export default class NewQuoteSummaryPage extends NavigationMixin(LightningElemen
         }).then(generatedUrl=>{
             console.log(generatedUrl)
             window.open(generatedUrl)
+        })
+    }
+
+    get paymentTermsOptions() {
+        return [
+            { label: 'Pay In Full', value: 'Pay In Full' },
+            { label: '3Pay', value: '3Pay' },
+            { label: '12 Months', value: '12 Months' },
+            { label: '24 Months', value: '24 Months' },
+            { label: '36 Months', value: '36 Months' },
+            { label: '60 Months', value: '60 Months' }
+        ]
+       
+    }
+
+    updateMonthlyPayment(event){
+        console.log(`updateMonthlyPayment`)
+        this.installmentsValue = event.detail.value;        
+        console.log(`Selected Installment is:`, this.installmentsValue)
+        let childProducts = this.template.querySelectorAll('c-qs-quote-line-grouping')
+        childProducts.forEach(child=>{
+            child.refreshChildLines(event.detail.value)
         })
     }
 

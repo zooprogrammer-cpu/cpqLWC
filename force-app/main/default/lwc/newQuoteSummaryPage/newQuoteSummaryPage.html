@@ -12,6 +12,16 @@
                 Quote Name:{quoteNames.Name}
             </template>
         </div>
+        <!-- Installments Combobox -->
+        <div>
+            <div class="slds-float_left slds-m-left_large">
+                <lightning-formatted-text value="Installments"></lightning-formatted-text>
+            </div>
+            <lightning-combobox class="slds-size_1-of-8 slds-m-left_large" options={paymentTermsOptions}
+                value={installmentsValue} onchange={updateMonthlyPayment}>
+            </lightning-combobox>
+        </div>
+
         <div>
             <template if:true={quoteLines}>
                     <c-qs-quote-line-grouping
