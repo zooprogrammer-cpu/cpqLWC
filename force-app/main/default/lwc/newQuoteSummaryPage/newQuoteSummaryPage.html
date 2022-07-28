@@ -4,14 +4,19 @@
             <button class="slds-button slds-button_neutral slds-float_right" onclick={handleReturntoQuoteDetail}>Return to Quote Detail</button>
             <button class="slds-button slds-button_neutral slds-float_right" onclick={gotoQLE}>Modify Quote Test</button>
             <button class="slds-button slds-button_neutral slds-float_right" onclick={clickHandler}>Make Payment</button>
+            <button class="slds-button slds-button_neutral slds-float_right" onclick={refreshHandler}>Refresh Apex</button>
+
 
         </div>
         <!-- Print Quote Name in Quote Summary Page Start -->
         <div class="slds-text-heading_medium slds-align_absolute-center">
-            <template if:true={quoteNames}>
-                Quote Name:{quoteNames.Name}
+            <template if:true={quoteData}>
+                Quote Name:{quoteData.Name} 
+                Intro Period: {introPeriod}
+
             </template>
         </div>
+
         <!-- Installments Combobox -->
         <div>
             <div class="slds-float_left slds-m-left_large">

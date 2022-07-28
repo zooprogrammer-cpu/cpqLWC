@@ -14,6 +14,7 @@ export default class NewQuoteSummaryPage extends NavigationMixin(LightningElemen
     @track planSummaryArray = [];
     parsedQuoteLines =[];
     installmentsValue = '';
+    introPeriod
     
     @track columns =[
         {label:'Product Name', fieldName:'SBQQ__ProductName__c',type: 'text' },
@@ -30,18 +31,34 @@ export default class NewQuoteSummaryPage extends NavigationMixin(LightningElemen
     get quoteIden(){
         return (this.pageRef.state.c__quoteId)
     }
-       //Capture Quote Name
-       @wire (getQuote,{quoteId:'$quoteIden'})
-       quoteHandler({data,error}){
-           if(data){
-               console.log(data)
-               console.log(data.Name)
-               this.quoteNames = data;
-           }
-           if(error){
-               console.error(error)
-           }
-       }
+
+    //Capture Quote Name
+    // @wire (getQuote,{quoteId:'$quoteIden'})
+    // quoteHandler({data,error}){
+    //     if(data){
+    //         console.log(`quoteHandler data:`,data)
+    //         console.log(data.Name)
+    //         this.quoteData = data;
+    //     }
+    //     if(error){
+    //         console.error(error)
+    //     }
+    // }
+
+    @wire (getQuote,{quoteId:'$quoteIden'})
+    quoteHandler(result){
+        this.quoteResult = result
+        if(result.data){
+            console.log(`quoteHandler data:`,result.data)
+            this.quoteData = result.data; 
+            refreshApex(this.quoteResult);
+            this.introPeriod = this.quoteData.Intro_Period__c
+            
+        }
+        if(result.error){
+            console.error(result.error)
+        }
+    }
 
     //Capture Quote Lines 
     @wire(getQuoteLines,{quoteId:'$quoteIden'})
@@ -125,6 +142,11 @@ export default class NewQuoteSummaryPage extends NavigationMixin(LightningElemen
         childProducts.forEach(child=>{
             child.refreshChildLines(event.detail.value)
         })
+    }
+
+    refreshHandler(){
+        console.log(`Running refreshHandler`)
+        return refreshApex(this.quoteResult);
     }
 
 
